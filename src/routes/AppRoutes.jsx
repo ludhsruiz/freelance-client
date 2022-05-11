@@ -8,6 +8,7 @@ import OffersPage from "../pages/OffersPage/OffersPage"
 import EventsPage from "../pages/EventsPage/EventsPage"
 import PublishersPage from "../pages/PublishersPage/PublishersPage"
 
+import UsersPage from '../pages/UsersPage/UsersPage'
 
 const AppRoutes = () => {
 
@@ -22,6 +23,7 @@ const AppRoutes = () => {
             <Route path="/eventos" element={<EventsPage />} />
             <Route path="/empresas" element={<PublishersPage />} />
 
+            <Route path="/usuarios" element={<UsersPage />} />
             <Route path="*" element={<h1>U GOT LOST, 404</h1>} />
         </Routes>
     )
