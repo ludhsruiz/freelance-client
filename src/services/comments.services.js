@@ -18,13 +18,13 @@ class CommentsService {
     }
 
     postComment = comment => {
-        return this.app.post('/postComment', comment)
+        return this.api.post('/postComment', comment)
     }
 
     deleteComment = id => {
-        return this.app.delete(`${id}/delete`, id)
+        return this.api.delete(`${id}/delete`, id)
     }
-    
+
     verify = token => {
         return this.api.get('/verify', { headers: { Authorization: `Bearer ${token}` } })
     }

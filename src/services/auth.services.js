@@ -18,13 +18,14 @@ class AuthService {
     }
 
     signup = user => {
-        return this.app.post('/signup', user)
+
+        return this.api.post('/signup', user)
     }
 
     login = user => {
-        return this.app.post('/login', user)
+        return this.api.post('/login', user)
     }
-    
+
     verify = token => {
         return this.api.get('/verify', { headers: { Authorization: `Bearer ${token}` } })
     }

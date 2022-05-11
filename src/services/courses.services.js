@@ -18,33 +18,33 @@ class CoursesService {
     }
 
     getAllCourses = () => {
-        return this.app.get('/')
+        return this.api.get('/')
     }
 
     getOneCourse = id => {
-        return this.app.get(`/${id}`)
+        return this.api.get(`/${id}`)
     }
 
     createCourse = course => {
-        return this.app.post('/create', course)
+        return this.api.post('/create', course)
     }
 
     editCourse = (id, course) => {
-        return this.app.put(`${id}/edit`, course)
+        return this.api.put(`${id}/edit`, course)
     }
 
     deleteCourse = id => {
-        return this.app.delete(`${id}/delete`)
+        return this.api.delete(`${id}/delete`)
     }
-    
+
     courseAttendance = id => {
-        return this.app.put(`${id}/attendance`)
+        return this.api.put(`${id}/attendance`)
     }
 
     courseLeave = id => {
-        return this.app.put(`${id}/leave`)
+        return this.api.put(`${id}/leave`)
     }
-    
+
     verify = token => {
         return this.api.get('/verify', { headers: { Authorization: `Bearer ${token}` } })
     }

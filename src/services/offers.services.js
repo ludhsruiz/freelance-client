@@ -3,7 +3,7 @@ import axios from 'axios'
 class OffersService {
 
     constructor() {
-        this.api = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}/offers` })
+        this.api = axios.create({ baseURL: `${process.env.REACT_api_API_URL}/offers` })
 
         this.api.interceptors.request.use((config) => {
 
@@ -18,23 +18,23 @@ class OffersService {
     }
 
     getAllOffers = () => {
-        return this.app.get('/')
+        return this.api.get('/')
     }
 
     createOffer = offer => {
-        return this.app.post('/create', offer)
+        return this.api.post('/create', offer)
     }
 
     editOffer = (id, offer) => {
-        return this.app.put(`${id}/edit`, offer)
+        return this.api.put(`${id}/edit`, offer)
     }
 
     deleteOffer = id => {
-        return this.app.delete(`${id}/delete`)
+        return this.api.delete(`${id}/delete`)
     }
     
     OfferSubscribe = id => {
-        return this.app.put(`${id}/subscribe`)
+        return this.api.put(`${id}/subscribe`)
     }
 
     verify = token => {
