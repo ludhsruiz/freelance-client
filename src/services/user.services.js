@@ -3,14 +3,14 @@ import axios from 'axios'
 class UserService {
 
     constructor() {
-        this.api = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}/user` })
+        this.api = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}/users` })
     }
 
     getUsers = () => {
         return this.api.get('/')
     }
 
-    gettUser = user_id => {
+    getUser = user_id => {
         return this.api.post(`/${user_id}`)
     }
 
