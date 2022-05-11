@@ -1,13 +1,13 @@
 import { Container} from 'react-bootstrap'
 
-const IndexPage = () => {
+const PublishersPage = () => {
 
     return (
         <Container>
-            <h1>¡HOME PAGEEEE !</h1>
+            <h1>PUBLISHERS</h1>
             <hr />            
         </Container>
     )
 }
 
-export default IndexPage
+export default PublishersPage

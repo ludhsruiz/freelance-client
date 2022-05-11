@@ -1,13 +1,13 @@
 import { Container} from 'react-bootstrap'
 
-const IndexPage = () => {
+const EventsPage = () => {
 
     return (
         <Container>
-            <h1>¡HOME PAGEEEE !</h1>
+            <h1> EVENTS </h1>
             <hr />            
         </Container>
     )
 }
 
-export default IndexPage
+export default EventsPage

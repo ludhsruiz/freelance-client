@@ -7,14 +7,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { BrowserRouter as Router } from 'react-router-dom'
 import { AuthProviderWrapper } from './context/auth.context';
+import {MessageProviderWrapper} from './context/userMessage.context'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
-    <AuthProviderWrapper>
-      <App />
-    </AuthProviderWrapper>
+    <MessageProviderWrapper>
+      <AuthProviderWrapper>
+       <App />
+       </AuthProviderWrapper>
+    </MessageProviderWrapper>
   </Router>
 );
 

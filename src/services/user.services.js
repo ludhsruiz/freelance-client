@@ -10,7 +10,7 @@ class UserService {
         return this.api.get('/')
     }
 
-    gettUser = user_id => {
+    getUser = user_id => {
         return this.api.post(`/${user_id}`)
     }
 
