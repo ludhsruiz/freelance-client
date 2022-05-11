@@ -29,7 +29,7 @@ const Navigation = () => {
                         }
 
                         {
-                            user && <NavLink to="/perfil" className="nav-link justify-content-end">Hola, {user.username}</NavLink>
+                            user && <NavLink to="/perfil" className="nav-link justify-content-end">Hola, {user.name}</NavLink>
                         }
                     </Nav>
                 </Navbar.Collapse>
