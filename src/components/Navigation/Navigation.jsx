@@ -2,7 +2,7 @@ import './Navigation.css'
 import { Navbar, Container, Nav } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 import { useContext } from 'react'
-// import { AuthContext } from '../../context/auth.context'
+import { AuthContext } from '../../context/auth.context'
 
 const Navigation = () => {
 
@@ -29,7 +29,7 @@ const Navigation = () => {
                         }
 
                         {
-                            user && <NavLink to="/perfil" className="nav-link justify-content-end">Hola, {user.username}</NavLink>
+                            user && <NavLink to="/perfil" className="nav-link justify-content-end">Hola, {user.name}</NavLink>
                         }
                     </Nav>
                 </Navbar.Collapse>

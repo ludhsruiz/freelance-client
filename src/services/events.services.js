@@ -18,31 +18,31 @@ class EventsService {
     }
 
     getAllEvents = () => {
-        return this.app.get('/')
+        return this.api.get('/')
     }
 
     getOneEvent = id => {
-        return this.app.get(`/${id}`)
+        return this.api.get(`/${id}`)
     }
 
     createEvent = event => {
-        return this.app.post('/create', event)
+        return this.api.post('/create', event)
     }
 
     editEvent = (id, event) => {
-        return this.app.put(`${id}/edit`, event)
+        return this.api.put(`${id}/edit`, event)
     }
 
     deleteEvent = id => {
-        return this.app.delete(`${id}/delete`)
+        return this.api.delete(`${id}/delete`)
     }
     
     eventAttendance = id => {
-        return this.app.put(`${id}/attendance`)
+        return this.api.put(`${id}/attendance`)
     }
 
     eventLeave = id => {
-        return this.app.put(`${id}/leave`)
+        return this.api.put(`${id}/leave`)
     }
 
     verify = token => {

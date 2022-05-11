@@ -29,8 +29,9 @@ const SignupForm = () => {
         const { value, name } = e.currentTarget
         setSignupData({ ...signupData, [name]: value })
     }
-
+    
     const { name, surname, password, email } = signupData
+    
 
     return (
 

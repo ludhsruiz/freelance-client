@@ -3,7 +3,7 @@ import axios from 'axios'
 class AuthService {
 
     constructor() {
-        this.api = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}/auth` })
+        this.api = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}auth` })
 
         this.api.interceptors.request.use((config) => {
 
@@ -18,11 +18,11 @@ class AuthService {
     }
 
     signup = user => {
-        return this.app.post('/signup', user)
+        return this.api.post('/signup', user)
     }
 
     login = user => {
-        return this.app.post('/login', user)
+        return this.api.post('/login', user)
     }
     
     verify = token => {
