@@ -3,7 +3,7 @@ import axios from 'axios'
 class OffersService {
 
     constructor() {
-        this.api = axios.create({ baseURL: `${process.env.REACT_api_API_URL}/offers` })
+        this.api = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}/offers` })
 
         this.api.interceptors.request.use((config) => {
 
@@ -21,11 +21,16 @@ class OffersService {
         return this.api.get('/')
     }
 
+    getOneOffer = id => {
+        return this.api.get(`${id}`)
+    }
+
     createOffer = offer => {
         return this.api.post('/create', offer)
     }
 
     editOffer = (id, offer) => {
+        console.log(offer)
         return this.api.put(`${id}/edit`, offer)
     }
 

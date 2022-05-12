@@ -3,7 +3,7 @@ import axios from 'axios'
 class EventsService {
 
     constructor() {
-        this.api = axios.create({ baseURL: `${process.env.REACT_api_API_URL}/events` })
+        this.api = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}/events` })
 
         this.api.interceptors.request.use((config) => {
 
