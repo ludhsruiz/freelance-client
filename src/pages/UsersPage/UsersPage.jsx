@@ -28,6 +28,7 @@ const UsersPage = () => {
                 <h1>Todos los Usuarios</h1>
                 <hr />
                 <UsersList users={users} />
+                <hr />
             </Container>
         </>
     )

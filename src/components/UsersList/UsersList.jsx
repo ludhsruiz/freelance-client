@@ -4,8 +4,6 @@ import Loader from "../Loader/Loader"
 
 const UsersList = ({ users }) => {
 
-    console.log('USER= ', users)
-
     return (
 
         users.length
@@ -20,6 +18,7 @@ const UsersList = ({ users }) => {
                         )
                     })
                 }
+                <hr />
             </Row> :
             <Loader />
     )

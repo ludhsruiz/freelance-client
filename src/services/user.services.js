@@ -11,7 +11,7 @@ class UserService {
     }
 
     getUser = user_id => {
-        return this.api.post(`/${user_id}`)
+        return this.api.get(`/${user_id}`)
     }
 
     editUser = (user_id, user) => {

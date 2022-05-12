@@ -18,6 +18,7 @@ class AuthService {
     }
 
     signup = user => {
+
         return this.api.post('/signup', user)
     }
 

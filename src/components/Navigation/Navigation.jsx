@@ -11,9 +11,9 @@ const Navigation = () => {
     return (
 
 
-        
+
         <Navbar bg="dark" variant="dark" expand="lg">
-            <Container>
+            <Container className='navbar'>
                 <Navbar.Brand href="/">FREELANCER</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -25,8 +25,8 @@ const Navigation = () => {
                         <NavLink to="/cursos" className="nav-link">CURSOS</NavLink>
                     </Nav>
                     <Nav>
-                        
-                    {
+
+                        {
                             isLoggedIn
                                 ?
                                 <NavLink to='/' className="nav-link" onClick={logOutUser}>Cerrar sesión</NavLink>
@@ -47,7 +47,7 @@ const Navigation = () => {
 
 
 
-                        
+
 
 
 
