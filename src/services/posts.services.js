@@ -3,7 +3,7 @@ import axios from 'axios'
 class PostsService {
 
     constructor() {
-        this.api = axios.create({ baseURL: `${process.env.REACT_api_API_URL}/offers` })
+        this.api = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}/posts` })
 
         this.api.interceptors.request.use((config) => {
 
