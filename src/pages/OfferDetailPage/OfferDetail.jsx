@@ -42,8 +42,7 @@ const OffersDetail = () => {
 
     const handleDeleteOfferBtn = () => {
         offersService
-            .deleteOffer
-            .deletePost(id)
+            .deleteOffer(id)
             .then(() => Navigate('/ofertas'))
             .catch(err => console.log(err))
     }
