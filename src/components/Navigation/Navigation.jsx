@@ -23,6 +23,7 @@ const Navigation = () => {
                         <NavLink to="/eventos" className="nav-link">EVENTOS</NavLink>
                         <NavLink to="/empresas" className="nav-link">EMPRESAS</NavLink>
                         <NavLink to="/cursos" className="nav-link">CURSOS</NavLink>
+                        <NavLink to="/usuarios" className="nav-link">USUARIOS</NavLink>
                     </Nav>
                     <Nav>
 

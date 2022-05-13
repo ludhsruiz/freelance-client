@@ -3,7 +3,7 @@ import axios from 'axios'
 class PostsService {
 
     constructor() {
-        this.api = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}/posts` })
+        this.api = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}/post` })
 
         this.api.interceptors.request.use((config) => {
 
@@ -18,11 +18,11 @@ class PostsService {
     }
 
     getPosts = () => {
-        //return this.api.get(`${id}`)
+        return this.api.get('/')
     }
 
-    createPost = post => {
-        return this.api.post('/send', post)
+    createPost = (sender, receiver, comment) => {
+        return this.api.post('/send', { sender, receiver, comment })
     }
 
     deletePost = id => {

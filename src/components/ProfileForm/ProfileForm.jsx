@@ -16,9 +16,7 @@ const ProfileForm = ({ fireFinalActions, userDetails }) => {
     })
 
     const handleInputChange = e => {
-
         const { name, value } = e.currentTarget
-
         setuserData({
             ...userData,
             [name]: value
@@ -26,11 +24,8 @@ const ProfileForm = ({ fireFinalActions, userDetails }) => {
     }
 
     const handleSubmit = e => {
-
         e.preventDefault()
-
         userService
-
             .editUser(userDetails._id, userData) // (user_id, user)
             .then(response => {
                 fireFinalActions()

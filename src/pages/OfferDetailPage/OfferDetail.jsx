@@ -5,6 +5,7 @@ import offersService from '../../services/offers.services'
 import { AuthContext } from './../../context/auth.context'
 import OfferDetailCard from '../../components/OfferDetailCard/OfferDetailCard'
 import { useParams } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 // import { MessageContext } from './../../context/message.context'
 
 
@@ -30,7 +31,7 @@ const OffersDetail = () => {
             .then(err => console.log(err))
     }
 
-    const { isLoggedIn } = useContext(AuthContext)  
+    const { isLoggedIn } = useContext(AuthContext)
     // const { showMessage } = useContext(MessageContext)
 
     const fireFinalActions = () => {
@@ -40,15 +41,16 @@ const OffersDetail = () => {
     }
 
     const handleDeleteOfferBtn = () => {
-        deleteOffer
+        offersService
+            .deleteOffer
             .deletePost(id)
-            .then(() => navigate('/ofertas'))
+            .then(() => Navigate('/ofertas'))
             .catch(err => console.log(err))
     }
 
     return (
         <>
-            <Container>                
+            <Container>
                 <OfferDetailCard {...offer} />
                 {offer.publisher === user?._id && <Button onClick={openModal}>Edit</Button>}
                 {offer.publisher === user?._id && <Button className='myBtn' onClick={handleDeleteOfferBtn}>Eliminar</Button>}
