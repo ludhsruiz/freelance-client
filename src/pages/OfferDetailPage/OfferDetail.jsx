@@ -5,6 +5,7 @@ import offersService from '../../services/offers.services'
 import { AuthContext } from './../../context/auth.context'
 import OfferDetailCard from '../../components/OfferDetailCard/OfferDetailCard'
 import { useParams } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 // import { MessageContext } from './../../context/message.context'
 
 
@@ -40,9 +41,9 @@ const OffersDetail = () => {
     }
 
     const handleDeleteOfferBtn = () => {
-        deleteOffer
-            .deletePost(id)
-            .then(() => navigate('/ofertas'))
+        offersService
+            .deleteOffer(id)
+            .then(() => Navigate('/ofertas'))
             .catch(err => console.log(err))
     }
 
