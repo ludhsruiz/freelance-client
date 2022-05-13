@@ -22,7 +22,7 @@ class CommentsService {
     }
 
     deleteComment = id => {
-        return this.api.delete(`${id}/delete`, id)
+        return this.api.delete(`/${id}/delete`, id)
     }
 
     verify = token => {

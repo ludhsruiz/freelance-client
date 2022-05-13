@@ -22,7 +22,7 @@ class OffersService {
     }
 
     getOneOffer = id => {
-        return this.api.get(`${id}`)
+        return this.api.get(`/${id}`)
     }
 
     createOffer = offer => {
@@ -31,15 +31,15 @@ class OffersService {
 
     editOffer = (id, offer) => {
         console.log(offer)
-        return this.api.put(`${id}/edit`, offer)
+        return this.api.put(`/${id}/edit`, offer)
     }
 
     deleteOffer = id => {
-        return this.api.delete(`${id}/delete`)
+        return this.api.delete(`/${id}/delete`)
     }
     
     OfferSubscribe = id => {
-        return this.api.put(`${id}/subscribe`)
+        return this.api.put(`/${id}/subscribe`)
     }
 
     verify = token => {

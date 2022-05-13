@@ -26,7 +26,7 @@ class PostsService {
     }
 
     deletePost = id => {
-        return this.api.delete(`${id}/delete`)
+        return this.api.delete(`/${id}/delete`)
     }
 
     verify = token => {

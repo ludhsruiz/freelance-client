@@ -1,18 +1,18 @@
 import { Container, Modal, Button } from 'react-bootstrap'
 import { useEffect, useState, useContext } from "react"
-import OfferEditForm from '../../components/OfferEditForm/OfferEditForm'
-import offersService from '../../services/offers.services'
-import { AuthContext } from './../../context/auth.context'
-import OfferDetailCard from '../../components/OfferDetailCard/OfferDetailCard'
+import EventEditForm from '../../components/EventEditForm/EventEditForm'
+import eventsService from '../../services/events.services'
+import { AuthContext } from '../../context/auth.context'
+import EventDetailCard from '../../components/EventDetailCard/EventDetailCard'
 import { useParams } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
 // import { MessageContext } from './../../context/message.context'
 
 
-const OffersDetail = () => {
+const EventDetail = () => {
 
     const [showModal, setShowModal] = useState(false)
-    const [offer, setOffer] = useState([])
+    const [event, setEvent] = useState([])
 
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
@@ -20,13 +20,13 @@ const OffersDetail = () => {
     const { id } = useParams()
     const { user } = useContext(AuthContext)
 
-    useEffect(() => loadOffer(), [])
+    useEffect(() => loadEvent(), [])
 
-    const loadOffer = () => {
-        offersService
-            .getOneOffer(id)
+    const loadEvent = () => {
+        eventsService
+            .getOneEvent(id)
             .then(({ data }) => {
-                setOffer(data)
+                setEvent(data)
             })
             .then(err => console.log(err))
     }
@@ -36,26 +36,24 @@ const OffersDetail = () => {
 
     const fireFinalActions = () => {
         closeModal()
-        loadOffer()
+        loadEvent()
         // showMessage('OfferCreated')
     }
 
-    const handleDeleteOfferBtn = () => {
-        offersService
-            .deleteOffer(id)
-            .then(() => Navigate('/ofertas'))
+    const handleDeleteEventBtn = () => {
+        eventsService
+            .deleteEvent(id)
+            .then(() => Navigate('/eventos'))
             .catch(err => console.log(err))
     }
 
     return (
         <>
             <Container>
-                <OfferDetailCard {...offer} />
-                {offer.publisher === user?._id && <>
-                    <Button onClick={openModal}>Edit</Button>
-                    <Button className='myBtn' onClick={handleDeleteOfferBtn}>Eliminar</Button>
-                </>
-                }
+                <EventDetailCard {...event} />
+                {/* {offer.publisher === user?._id &&  --------------- } */}
+                <Button onClick={openModal}>Edit</Button>
+                <Button className='myBtn' onClick={handleDeleteEventBtn}>Eliminar</Button>
                 <hr />
             </Container>
 
@@ -64,17 +62,16 @@ const OffersDetail = () => {
                     <Modal.Title>Editar Oferta</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <OfferEditForm fireFinalActions={fireFinalActions} offer={offer} />
+                    <EventEditForm fireFinalActions={fireFinalActions} event={event} />
                 </Modal.Body>
             </Modal>
         </>
     )
 }
 
-export default OffersDetail
+export default EventDetail
 
 
-// editOffer = (id, offer) => {  return this.api.put(`${id}/edit`, offer)}
 // deleteOffer = id => {   return this.api.delete(`${id}/delete`)}
 // OfferSubscribe = id => {   return this.api.put(`${id}/subscribe`)}
 // subscribe send id and add to publisher (subscribers to offer)

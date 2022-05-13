@@ -3,7 +3,7 @@ import { useState } from "react"
 import offersService from "../../services/offers.services"
 
 
-const OfferEditForm = ({ offer }) => {
+const OfferEditForm = ({ fireFinalActions, offer }) => {
 
     const [offerState, setOfferState] = useState({
         title: offer.title,
@@ -27,7 +27,7 @@ const OfferEditForm = ({ offer }) => {
         offersService
             .editOffer(offer._id, offerState)
             .then(() => {
-                //closeModal()
+                fireFinalActions()
             })
             .catch(err => console.log(err))
 
