@@ -14,9 +14,7 @@ const UsersPage = () => {
         userService
             .getUsers()
             .then(({ data }) => {
-
                 setUsers(data)
-
             })
             .then(err => console.log(err))
     }

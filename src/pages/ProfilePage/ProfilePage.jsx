@@ -38,8 +38,7 @@ const ProfilePage = () => {
         loadUser()
     }
 
-    let userIdentity = false
-    if (isLoggedIn && id === user._id) { userIdentity = true }
+    const userIdentity = isLoggedIn && id === user._id
 
     //////////////////////////
 
@@ -54,7 +53,6 @@ const ProfilePage = () => {
         postsService
             .createPost(user._id, id, messageData) // (user_id, user)
             .then(response => {
-                // fireFinalActions()
 
             })
             .catch(err => console.log(err))

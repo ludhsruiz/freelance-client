@@ -51,8 +51,11 @@ const OffersDetail = () => {
         <>
             <Container>
                 <OfferDetailCard {...offer} />
-                {offer.publisher === user?._id && <Button onClick={openModal}>Edit</Button>}
-                {offer.publisher === user?._id && <Button className='myBtn' onClick={handleDeleteOfferBtn}>Eliminar</Button>}
+                {offer.publisher === user?._id && <>
+                    <Button onClick={openModal}>Edit</Button>
+                    <Button className='myBtn' onClick={handleDeleteOfferBtn}>Eliminar</Button>
+                </>
+                }
                 <hr />
             </Container>
 
