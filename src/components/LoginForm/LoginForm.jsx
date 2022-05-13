@@ -25,7 +25,7 @@ const Loginform = () => {
             .then(({ data }) => {
                 storeToken(data.authToken)
                 authenticateUser()
-                navigate('/perfil')
+                navigate('/')
             })
             .catch(err => console.log(err))
     }

@@ -30,11 +30,11 @@ class EventsService {
     }
 
     editEvent = (id, event) => {
-        return this.api.put(`${id}/edit`, event)
+        return this.api.put(`/${id}/edit`, event)
     }
 
     deleteEvent = id => {
-        return this.api.delete(`${id}/delete`)
+        return this.api.delete(`/${id}/delete`)
     }
     
     eventAttendance = id => {

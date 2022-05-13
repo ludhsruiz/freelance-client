@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import { AuthContext } from './../../context/auth.context'
 
 
-const OfferCard = ({ _id, title, companyName, companyLogo, description }) => {
+const EventCard = ({ _id, title, date, location, img, price, description }) => {
 
     const { user } = useContext(AuthContext)
 
@@ -12,10 +12,10 @@ const OfferCard = ({ _id, title, companyName, companyLogo, description }) => {
         <Card className="OfferrCard">
             <Card.Header>{title}</Card.Header>
             <Card.Body>
-                <Card.Title>{companyName}</Card.Title>
+                <Card.Title>{date}{location}</Card.Title>
                 <Card.Text>{description}</Card.Text>
                  <div className="d-grid gap-2">
-                    <Link to={`/oferta/${_id}`} className="btn btn-light">Ver detalles</Link>
+                    <Link to={`/evento/${_id}`} className="btn btn-light">Ver detalles</Link>
                     {/* {owner?? owner === user?._id && <Button variant='warning'>Editar</Button>}
                     {owner?? owner === user?._id && <Button variant='warning'>Delete</Button>} */}
                 </div>
@@ -26,4 +26,6 @@ const OfferCard = ({ _id, title, companyName, companyLogo, description }) => {
     )
 }
 
-export default OfferCard
+export default EventCard
+
+ 

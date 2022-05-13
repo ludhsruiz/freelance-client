@@ -30,19 +30,19 @@ class CoursesService {
     }
 
     editCourse = (id, course) => {
-        return this.api.put(`${id}/edit`, course)
+        return this.api.put(`/${id}/edit`, course)
     }
 
     deleteCourse = id => {
-        return this.api.delete(`${id}/delete`)
+        return this.api.delete(`/${id}/delete`)
     }
 
     courseAttendance = id => {
-        return this.api.put(`${id}/attendance`)
+        return this.api.put(`/${id}/attendance`)
     }
 
     courseLeave = id => {
-        return this.api.put(`${id}/leave`)
+        return this.api.put(`/${id}/leave`)
     }
 
     verify = token => {
