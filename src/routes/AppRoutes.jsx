@@ -38,6 +38,9 @@ const AppRoutes = () => {
 
             <Route path="/usuarios" element={<UsersPage />} />
 
+            {/* <Route path='/pagar/:subscription_id' element={<PaymentPage />} /> */}
+
+
             <Route path="*" element={<h1>U GOT LOST, 404</h1>} />
         </Routes>
     )
