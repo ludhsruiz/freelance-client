@@ -11,6 +11,7 @@ const ProfileForm = ({ fireFinalActions, userDetails }) => {
         surname: userDetails.surname,
         email: userDetails.email,
         profileImg: userDetails.profileImg,
+        role: userDetails.role,
         description: userDetails.description,
         occupation: userDetails.occupation
     })
@@ -33,7 +34,7 @@ const ProfileForm = ({ fireFinalActions, userDetails }) => {
             .catch(err => console.log(err))
     }
 
-    const { name, surname, email, profileImg, description, occupation } = userData
+    const { name, surname, email, profileImg, role, description, occupation } = userData
 
 
     return (
@@ -78,6 +79,11 @@ const ProfileForm = ({ fireFinalActions, userDetails }) => {
                     <option value="Otro">Otro</option>
                     {/* </Form.Select> */}
                 </Form.Control>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="role">
+                <Form.Label>Descripción</Form.Label>
+                <Form.Control type="hidden" value={role} name="role" />
             </Form.Group>
 
             <Button variant="dark" type="submit">Guardar</Button>

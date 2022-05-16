@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { Col } from "react-bootstrap"
 import Loader from '../Loader/Loader'
 import userEvent from '@testing-library/user-event'
+import MessageCard from '../MessageCard/MessageCard'
 
 const Messages = () => {
 
@@ -17,6 +18,7 @@ const Messages = () => {
 
             .then(({ data }) => {
                 setrecivedMessage(data)
+                console.log(data)
             })
             .then(err => console.log(err))
     }
@@ -26,17 +28,20 @@ const Messages = () => {
             <>
                 <h4>Mensajes recibidos</h4>
 
+                {
+                    recivedMessage.map((message, index) => {
 
-                {recivedMessage.map(message => {
+                        return (
+                            <div key={index}>
+                                <MessageCard customMessage={message} />
+                                <br></br>
+                            </div>
 
-                    return (
-                        <Col md={{ span: 4 }} key={message._id}>
 
-                            <p>{message.comment} : {message.sender.name} {message.sender._id}</p>
+                        )
 
-                        </Col>
-                    )
-                })}
+                    })
+                }
 
             </>
             : <Loader />

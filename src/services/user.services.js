@@ -18,6 +18,10 @@ class UserService {
         return this.api.put(`/${user_id}/edit`, user)
     }
 
+    editUserRole = (user_id, user) => {
+        return this.api.put(`/${user_id}/role`, user)
+    }
+
     deleteUser = user_id => {
         return this.api.delete(`/${user_id}/edit`)
     }

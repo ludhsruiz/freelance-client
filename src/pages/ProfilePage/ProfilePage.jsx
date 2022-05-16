@@ -1,5 +1,5 @@
 import './ProfilePage.css'
-import { Container, Modal, Button, Form } from 'react-bootstrap'
+import { Container, Row, Modal, Button, Form, Col } from 'react-bootstrap'
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from '../../context/auth.context'
 import userService from '../../services/user.services'
@@ -7,6 +7,8 @@ import postsService from '../../services/posts.services'
 import ProfileForm from '../../components/ProfileForm/ProfileForm'
 import { useParams } from "react-router-dom";
 import Messages from '../../components/Messages/Messages'
+
+import SwitchUser from '../../components/SwitchUser/SwitchUser'
 
 
 const ProfilePage = () => {
@@ -39,7 +41,7 @@ const ProfilePage = () => {
     }
 
     const userIdentity = isLoggedIn && id === user._id
-
+    //console.log(user)
     //////////////////////////
 
     const handleInputChange = e => {
@@ -63,13 +65,23 @@ const ProfilePage = () => {
 
         <>
             <Container>
-                <h1>Profile Page</h1>
+                <Row>
+                    <Col>
+                        <h1>Perfil</h1>
+                    </Col>
+                    <Col>
+                        {userIdentity && <Button onClick={openModal}>Editar Perfil</Button>}
+                        {user?.role === 'ADMIN' &&
+
+                            <SwitchUser userDetails={userDetails} />}
+
+                    </Col>
+                </Row>
                 <hr />
-                {userIdentity && <Button onClick={openModal}>Editar Perfil</Button>}
-                {user?.role === 'ADMIN' && <h1>COMPONENTE ADMIN</h1>}
-                {user?.role === 'USER' && <h1>COMPONENTE USER</h1>}
 
                 <h2>Nombre: {userDetails.name}</h2>
+                {userDetails.role === 'USER' ? <p>Role Actual: {userDetails.role}</p> : <h1></h1>}
+
                 <p>Email: {userDetails.email}</p>
                 <p>Imagen: <img className='profile-img' src={userDetails.profileImg} /></p>
                 <p>Descripción: {userDetails.description}</p>
@@ -81,12 +93,12 @@ const ProfilePage = () => {
                         <Form.Label>Deja un mensaje</Form.Label>
                         <Form.Control as="textarea" rows={3} onChange={handleInputChange} name="textarea" />
                     </Form.Group>
-                    <Button variant="dark" type="submit">Enviar mensaje</Button>
+                    <Button variant="dark" type="submit">Escribe un mensaje</Button>
                 </Form>
 
                 <hr />
+                {userIdentity && <Messages />}
 
-                <Messages />
 
                 <hr />
                 <h4>Seguidores</h4>
