@@ -40,7 +40,7 @@ const CoursesDetail = () => {
         // showMessage('CourseCreated')
     }
 
-    const handleDeleteCourseBtn = () => {
+    const handleDeleteCourseBtn = id => {
         coursesService
             .deleteCourse(id)
             .then(() => Navigate('/ofertas'))

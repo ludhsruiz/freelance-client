@@ -40,7 +40,7 @@ const EventDetail = () => {
         // showMessage('OfferCreated')
     }
 
-    const handleDeleteEventBtn = () => {
+    const handleDeleteEventBtn = id => {
         eventsService
             .deleteEvent(id)
             .then(() => Navigate('/eventos'))
