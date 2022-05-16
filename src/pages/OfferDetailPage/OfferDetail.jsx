@@ -4,8 +4,7 @@ import OfferEditForm from '../../components/OfferEditForm/OfferEditForm'
 import offersService from '../../services/offers.services'
 import { AuthContext } from './../../context/auth.context'
 import OfferDetailCard from '../../components/OfferDetailCard/OfferDetailCard'
-import { useParams } from 'react-router-dom'
-import { Navigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 // import { MessageContext } from './../../context/message.context'
 
 
@@ -40,10 +39,12 @@ const OffersDetail = () => {
         // showMessage('OfferCreated')
     }
 
+    const navigate = useNavigate()
+
     const handleDeleteOfferBtn = () => {
         offersService
             .deleteOffer(id)
-            .then(() => Navigate('/ofertas'))
+            .then(() => navigate('/ofertas'))
             .catch(err => console.log(err))
     }
 
@@ -51,11 +52,11 @@ const OffersDetail = () => {
         <>
             <Container>
                 <OfferDetailCard {...offer} />
-                {offer.publisher === user?._id && <>
+                 <>
                     <Button onClick={openModal}>Edit</Button>
                     <Button className='myBtn' onClick={handleDeleteOfferBtn}>Eliminar</Button>
                 </>
-                }
+                {/* offer.publisher === user?._id && */}
                 <hr />
             </Container>
 

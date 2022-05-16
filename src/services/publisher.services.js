@@ -3,7 +3,7 @@ import axios from 'axios'
 class PublisherService {
 
     constructor() {
-        this.api = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}/publisher` })
+        this.api = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}/publishers` })
     }
 
     getPublishers = () => {

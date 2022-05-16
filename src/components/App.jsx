@@ -6,6 +6,7 @@ import StripeContainer from '../components/Stripe/StripeContainer'
 
 
 const App = () => {
+
   return (
     <>
       <Navigation />
