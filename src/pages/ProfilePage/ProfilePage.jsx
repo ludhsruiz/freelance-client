@@ -5,9 +5,9 @@ import { AuthContext } from '../../context/auth.context'
 import userService from '../../services/user.services'
 import postsService from '../../services/posts.services'
 import ProfileForm from '../../components/ProfileForm/ProfileForm'
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Messages from '../../components/Messages/Messages'
-
+import StripeContainer from '../../components/Stripe/StripeContainer'
 import SwitchUser from '../../components/SwitchUser/SwitchUser'
 
 
@@ -24,12 +24,13 @@ const ProfilePage = () => {
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
 
-    useEffect(() => loadUser(), [])
+    useEffect(() => loadUser(), [id])
 
     const loadUser = () => {
         userService
             .editUser(id)
             .then(({ data }) => {
+                console.log('la data --->', data)
                 setUserDetails(data)
             })
             .then(err => console.log(err))
@@ -71,9 +72,8 @@ const ProfilePage = () => {
                     </Col>
                     <Col>
                         {userIdentity && <Button onClick={openModal}>Editar Perfil</Button>}
-                        {user?.role === 'ADMIN' &&
-
-                            <SwitchUser userDetails={userDetails} />}
+                        {user?.role === 'ADMIN' && <SwitchUser userDetails={userDetails} />}
+                        {user?.role === 'PUBLISHER' && <Button>Crear Empresa</Button>}
 
                     </Col>
                 </Row>
@@ -118,10 +118,10 @@ const ProfilePage = () => {
 
             </Container>
 
-
+            <StripeContainer />
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Editar Perf</Modal.Title>
+                    <Modal.Title>Editar Perfil</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <ProfileForm fireFinalActions={fireFinalActions} userDetails={userDetails} />

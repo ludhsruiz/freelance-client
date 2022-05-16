@@ -1,8 +1,10 @@
 import React from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from 'axios'
-import { Form, Button, Row, Col, Container } from "react-bootstrap"
+import { Form, Button, Row, Col, Container, Modal } from "react-bootstrap"
 import './CheckoutForm.css'
+import { useState, useEffect } from "react"
+import MessagePayment from "./MessagePayment";
 
 
 export const CheckoutForm = () => {
@@ -10,6 +12,19 @@ export const CheckoutForm = () => {
     const elements = useElements();
 
     const amount = 2000
+
+    const [showModal, setShowModal] = useState(false)
+    const [paymentResult, setpaymentResult] = useState('')
+    //useEffect(() => loadUser(), [id])
+
+    const openModal = () => setShowModal(true)
+    const closeModal = () => setShowModal(false)
+
+
+    const fireFinalActions = () => {
+        closeModal()
+        // loadUser()
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -34,11 +49,15 @@ export const CheckoutForm = () => {
                 console.log("Stripe 35 | data", response.data.success);
                 if (response.data.success) {
                     console.log("CheckoutForm.js 25 | payment successful!");
-                    console.log('RESPONSE= ', response)
+                    console.log('RESPONSE= ', response.data.success)
                     console.log('RESPONSEDATA= ', response.data)
+                    setpaymentResult(response.data)
+                    setShowModal(true)
+
                 }
             } catch (error) {
                 console.log("CheckoutForm.js 28 | ", error);
+
             }
         } else {
             console.log(error.message);
@@ -65,6 +84,17 @@ export const CheckoutForm = () => {
                 </Col>
 
             </Row>
+
+            <Modal show={showModal} onHide={closeModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Estado del Pago</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <MessagePayment fireFinalActions={fireFinalActions} paymentResult={paymentResult} />
+                </Modal.Body>
+            </Modal>
+
+
         </Container>
     );
 };

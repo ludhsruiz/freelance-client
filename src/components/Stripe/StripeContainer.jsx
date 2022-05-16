@@ -10,6 +10,7 @@ const stripeTestPromise = loadStripe('pk_test_51KxcJgKzRRHyAofXNAEno5VcuHm7Nde6D
 
 const Stripe = () => {
     return (
+
         <Elements stripe={stripeTestPromise}>
             <CheckoutForm />
         </Elements>

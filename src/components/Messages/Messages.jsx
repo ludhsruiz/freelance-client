@@ -8,6 +8,7 @@ import MessageCard from '../MessageCard/MessageCard'
 const Messages = () => {
 
     const [recivedMessage, setrecivedMessage] = useState([])
+    const [loaded, setLoaded] = useState(false)
 
     useEffect(() => loadMessage(), [])
 
@@ -15,16 +16,18 @@ const Messages = () => {
 
         postsService
             .getPosts()
-
             .then(({ data }) => {
+                console.log('los mensajitos -->', data)
                 setrecivedMessage(data)
-                console.log(data)
+                setLoaded(true)
             })
             .then(err => console.log(err))
     }
 
     return (
-        recivedMessage.length ?
+
+
+        recivedMessage[0]?.[0] ?
             <>
                 <h4>Mensajes recibidos</h4>
 
@@ -44,7 +47,7 @@ const Messages = () => {
                 }
 
             </>
-            : <Loader />
+            : <h1>SIN MENSAJES</h1>
     )
 }
 
