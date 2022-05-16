@@ -4,8 +4,8 @@ import EventEditForm from '../../components/EventEditForm/EventEditForm'
 import eventsService from '../../services/events.services'
 import { AuthContext } from '../../context/auth.context'
 import EventDetailCard from '../../components/EventDetailCard/EventDetailCard'
-import { useParams } from 'react-router-dom'
-import { Navigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import StripeContainerEvent from '../../components/StripeEvent/StripeContainer'
 // import { MessageContext } from './../../context/message.context'
 
 
@@ -40,10 +40,13 @@ const EventDetail = () => {
         // showMessage('OfferCreated')
     }
 
-    const handleDeleteEventBtn = id => {
+    const navigate = useNavigate()
+
+    const handleDeleteEventBtn = () => {
+
         eventsService
             .deleteEvent(id)
-            .then(() => Navigate('/eventos'))
+            .then(() => navigate('/eventos'))
             .catch(err => console.log(err))
     }
 
@@ -56,6 +59,8 @@ const EventDetail = () => {
                 <Button className='myBtn' onClick={handleDeleteEventBtn}>Eliminar</Button>
                 <hr />
             </Container>
+            <StripeContainerEvent />
+
 
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>
@@ -72,6 +77,10 @@ const EventDetail = () => {
 export default EventDetail
 
 
-// deleteOffer = id => {   return this.api.delete(`${id}/delete`)}
-// OfferSubscribe = id => {   return this.api.put(`${id}/subscribe`)}
-// subscribe send id and add to publisher (subscribers to offer)
+// eventAttendance = id => {
+//     return this.api.put(`${id}/attendance`)
+// }
+
+// eventLeave = id => {
+//     return this.api.put(`${id}/leave`)
+// }

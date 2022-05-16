@@ -4,8 +4,7 @@ import CourseEditForm from '../../components/CourseEditForm/CourseEditForm'
 import coursesService from '../../services/courses.services'
 import { AuthContext } from '../../context/auth.context'
 import CourseDetailCard from '../../components/CourseDetailCard/CourseDetailCard'
-import { useParams } from 'react-router-dom'
-import { Navigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 // import { MessageContext } from './../../context/message.context'
 
 
@@ -40,10 +39,12 @@ const CoursesDetail = () => {
         // showMessage('CourseCreated')
     }
 
-    const handleDeleteCourseBtn = id => {
+    const navigate = useNavigate()
+
+    const handleDeleteCourseBtn = () => {
         coursesService
             .deleteCourse(id)
-            .then(() => Navigate('/ofertas'))
+            .then(() => navigate('/ofertas'))
             .catch(err => console.log(err))
     }
 

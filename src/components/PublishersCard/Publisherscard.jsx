@@ -1,10 +1,7 @@
 import { Button, Modal, Card } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
-import { useState } from "react"
-
-import { Navigate } from "react-router-dom"
-
+import { useNavigate, useState } from "react"
 import { AuthContext } from './../../context/auth.context'
 import PublisherEditForm from '../../components/PubisherEditForm/PublisherEditForm'
 import publisherService from '../../services/publisher.services'
@@ -16,16 +13,18 @@ const PublisherCard = ({ _id, name, contacto, companyLogo, description, loadPubl
 
     const publisherData = { _id, name, contacto, companyLogo, description}
 
-    const [publishers, setPublishers] = useState([])
+    // const [publishers, setPublishers] = useState([])
     const [showModalEdit, setShowModalEdit] = useState(false)
 
     const openModalEdit = () => setShowModalEdit(true)
     const closeModalEdit = () => setShowModalEdit(false)
 
+    // const navigate = useNavigate()
+
     // const handleDeleteEventBtn = id => {
     //     publisherService
     //         .deletePublisher(id)
-    //         .then(() => Navigate('/empresas'))
+    //         .then(() => navigate('/empresas'))
     //         .catch(err => console.log(err))
     // }
 
@@ -44,7 +43,7 @@ const PublisherCard = ({ _id, name, contacto, companyLogo, description, loadPubl
                 <Card.Text>{description}</Card.Text>
                  <div className="d-grid gap-2">
                  <Button onClick={openModalEdit}>Edit</Button>
-                  {/* <Button className='myBtn' onClick={handleDeleteEventBtn}>Eliminar</Button> */}
+                 {/* <Button className='myBtn' onClick={handleDeleteEventBtn}>Eliminar</Button> */}
 
                     {/* {owner?? owner === user?._id && <Button variant='warning'>Editar</Button>}
                     {owner?? owner === user?._id && <Button variant='warning'>Delete</Button>} */}
