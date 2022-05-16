@@ -12,7 +12,7 @@ const EventCard = ({ _id, title, date, location, img, price, description }) => {
         <Card className="OfferrCard">
             <Card.Header>{title}</Card.Header>
             <Card.Body>
-                <Card.Title>{date}{location}</Card.Title>
+                <Card.Title>{date.slice(0,10)} --- {location}</Card.Title>
                 <Card.Text>{description}</Card.Text>
                  <div className="d-grid gap-2">
                     <Link to={`/evento/${_id}`} className="btn btn-light">Ver detalles</Link>
@@ -21,7 +21,6 @@ const EventCard = ({ _id, title, date, location, img, price, description }) => {
                 </div>
             </Card.Body>
        </Card>
-
 
     )
 }

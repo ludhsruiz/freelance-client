@@ -5,38 +5,38 @@ import publisherService from "../../services/publisher.services"
 
 
 
-const NewPublisherForm = ({ fireFinalActions }) => {
+const PublisherEditForm = ({ publishers, fireFinalActionsEdit }) => {
 
-    const [publisherData, setPublisherData] = useState({
-        name: '',
-        description: '',
-        companyLogo: '' ,
-        contacto: '',
+
+    const [publisherState, setPublisherState] = useState({
+        name: publishers.name,
+        description: publishers.description,
+        companyLogo: publishers.companyLogo ,
+        contacto: publishers.contacto,
         
     })
 
-    // const [loadingImage, setLoadingImage] = useState(false)
-
     const handleInputChange = e => {
-        const { name, value } = e.currentTarget
-
-        setPublisherData({
-            ...publisherData,
+        const { name, value } = e.target
+        setPublisherState({
+            ...publisherState,
             [name]: value              
         })
     }
 
-    const handleSubmit = e => {
-
+    const handleSubmit = (e) => {
         e.preventDefault()
 
         publisherService
-            .createPublisher(publisherData)
-            .then(response => {
-                fireFinalActions()
+            .editPublisher(publishers._id, publisherState)
+            .then(() => {
+                fireFinalActionsEdit()
             })
             .catch(err => console.log(err))
+
+
     }
+
 
     // const handleImageUpload = (e) => {
 
@@ -55,7 +55,6 @@ const NewPublisherForm = ({ fireFinalActions }) => {
     // }
 
 
-    const  { _id, name, contacto, companyLogo, description } = publisherData
 
     
     return (
@@ -63,22 +62,22 @@ const NewPublisherForm = ({ fireFinalActions }) => {
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Name</Form.Label>
-                <Form.Control type="text" value={name} onChange={handleInputChange} name="name" />
+                <Form.Control type="text" value={publisherState.name} onChange={handleInputChange} name="name" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Descripcion</Form.Label>
-                <Form.Control type="text" value={description} onChange={handleInputChange} name="description" />
+                <Form.Control type="text" value={publisherState.description} onChange={handleInputChange} name="description" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Company Logo</Form.Label>
-                <Form.Control type="text" value={companyLogo} onChange={handleInputChange} name="companyLogo" />
+                <Form.Control type="text" value={publisherState.companyLogo} onChange={handleInputChange} name="companyLogo" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>contacto</Form.Label>
-                <Form.Control type="text" value={contacto} onChange={handleInputChange} name="contacto" />
+                <Form.Control type="text" value={publisherState.contacto} onChange={handleInputChange} name="contacto" />
             </Form.Group>
 
            {/* <Form.Group className="mb-3" controlId="imageUrl">
@@ -86,12 +85,11 @@ const NewPublisherForm = ({ fireFinalActions }) => {
                 <Form.Control type="file" onChange={handleImageUpload} />
             </Form.Group> */}
 
-            <Button variant="dark" type="submit">PUBLICAR EMPRESA</Button>
+            <Button variant="dark" type="submit" >GUARDAR</Button>
             {/* <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Crear montaña rusa'}</Button> */}
         </Form>
 
     )
 }
 
-export default NewPublisherForm
-
+export default PublisherEditForm
