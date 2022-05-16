@@ -3,7 +3,7 @@ import axios from 'axios'
 class SubscriptionsService {
 
     constructor() {
-        this.api = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}/subscriptions` })
+        this.api = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}/subscription` })
 
         this.api.interceptors.request.use((config) => {
 
@@ -17,7 +17,7 @@ class SubscriptionsService {
         })
     }
 
-    getAllSubscriptions = () => {  
+    getAllSubscriptions = () => {
         return this.api.get(`/`)
     }
 

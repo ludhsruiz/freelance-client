@@ -73,7 +73,7 @@ const ProfilePage = () => {
                     <Col>
                         {userIdentity && <Button onClick={openModal}>Editar Perfil</Button>}
                         {user?.role === 'ADMIN' && <SwitchUser userDetails={userDetails} />}
-                        {user?.role === 'PUBLISHER' && <Button>Crear Empresa</Button>}
+                        {user?.role === 'PUBLISHER' && <StripeContainer idUser={user._id} />}
 
                     </Col>
                 </Row>
@@ -118,7 +118,7 @@ const ProfilePage = () => {
 
             </Container>
 
-            <StripeContainer />
+
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>Editar Perfil</Modal.Title>

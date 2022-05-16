@@ -5,9 +5,12 @@ import { Form, Button, Row, Col, Container, Modal } from "react-bootstrap"
 import './CheckoutForm.css'
 import { useState, useEffect } from "react"
 import MessagePayment from "./MessagePayment";
+import subscriptionsService from "../../services/subscriptions.service";
 
+export const CheckoutForm = ({ idUser }) => {
 
-export const CheckoutForm = () => {
+    console.log('idUser', idUser)
+
     const stripe = useStripe();
     const elements = useElements();
 
@@ -27,6 +30,7 @@ export const CheckoutForm = () => {
     }
 
     const handleSubmit = async (event) => {
+        console.log('estoy pagandoooo')
         event.preventDefault();
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: "card",
@@ -49,8 +53,14 @@ export const CheckoutForm = () => {
                 console.log("Stripe 35 | data", response.data.success);
                 if (response.data.success) {
                     console.log("CheckoutForm.js 25 | payment successful!");
-                    console.log('RESPONSE= ', response.data.success)
-                    console.log('RESPONSEDATA= ', response.data)
+
+                    const publisher = idUser
+                    subscriptionsService
+                        .createSubscription({ publisher, amount })
+                        .then(err => console.log(err))
+                    //catch
+
+
                     setpaymentResult(response.data)
                     setShowModal(true)
 
@@ -73,7 +83,6 @@ export const CheckoutForm = () => {
                     <h3>Curso de React</h3>
 
                     <Form onSubmit={handleSubmit} >
-
                         <CardElement />
                         <hr />
                         <Button variant="primary" type="submit">
@@ -90,7 +99,7 @@ export const CheckoutForm = () => {
                     <Modal.Title>Estado del Pago</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <MessagePayment fireFinalActions={fireFinalActions} paymentResult={paymentResult} />
+                    <MessagePayment amount={amount} idUser={idUser} paymentResult={paymentResult} />
                 </Modal.Body>
             </Modal>
 
