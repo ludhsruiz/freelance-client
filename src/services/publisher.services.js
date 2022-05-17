@@ -10,6 +10,16 @@ class PublisherService {
         return this.api.get('/')
     }
 
+    getOnePublishers = id => {
+        return this.api.get(`/${id}`)
+    }
+    //////////////////////////////////
+    getPublisherByOwner = owner_id => {
+
+        return this.api.get(`/owner/${owner_id}`)
+
+    }
+
     createPublisher = publisher => {
         return this.api.post('/create', publisher)
     }

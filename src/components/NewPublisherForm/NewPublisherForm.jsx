@@ -5,14 +5,16 @@ import publisherService from "../../services/publisher.services"
 
 
 
-const NewPublisherForm = ({ fireFinalActions }) => {
+const NewPublisherForm = ({ fireFinalActions, owner }) => {
+
+    console.log('OWNER---------->', owner)
 
     const [publisherData, setPublisherData] = useState({
         name: '',
         description: '',
-        companyLogo: '' ,
+        companyLogo: '',
         contacto: '',
-        
+        owner: owner
     })
 
     // const [loadingImage, setLoadingImage] = useState(false)
@@ -22,7 +24,7 @@ const NewPublisherForm = ({ fireFinalActions }) => {
 
         setPublisherData({
             ...publisherData,
-            [name]: value              
+            [name]: value
         })
     }
 
@@ -55,9 +57,9 @@ const NewPublisherForm = ({ fireFinalActions }) => {
     // }
 
 
-    const  { _id, name, contacto, companyLogo, description } = publisherData
+    const { _id, name, contacto, companyLogo, description } = publisherData
 
-    
+
     return (
 
         <Form onSubmit={handleSubmit}>
@@ -81,7 +83,12 @@ const NewPublisherForm = ({ fireFinalActions }) => {
                 <Form.Control type="text" value={contacto} onChange={handleInputChange} name="contacto" />
             </Form.Group>
 
-           {/* <Form.Group className="mb-3" controlId="imageUrl">
+            <Form.Group className="mb-3" controlId="owner">
+                <Form.Control type="hidden" value={owner} onChange={handleInputChange} name="owner" />
+            </Form.Group>
+
+
+            {/* <Form.Group className="mb-3" controlId="imageUrl">
                 <Form.Label>Imagen (archivo)</Form.Label>
                 <Form.Control type="file" onChange={handleImageUpload} />
             </Form.Group> */}

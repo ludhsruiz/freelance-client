@@ -21,8 +21,8 @@ class SubscriptionsService {
         return this.api.get(`/`)
     }
 
-    getOneSubscription = id => {
-        return this.api.get(`/${id}`)
+    getOneSubscriber = id => {
+        return this.api.get(`/${id}/publisher`)
     }
 
     createSubscription = subscription => {

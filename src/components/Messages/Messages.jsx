@@ -17,7 +17,6 @@ const Messages = () => {
         postsService
             .getPosts()
             .then(({ data }) => {
-                console.log('los mensajitos -->', data)
                 setrecivedMessage(data)
                 setLoaded(true)
             })

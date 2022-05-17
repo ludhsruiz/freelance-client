@@ -24,10 +24,10 @@ export const CheckoutForm = ({ idUser }) => {
     const closeModal = () => setShowModal(false)
 
 
-    const fireFinalActions = () => {
-        closeModal()
-        // loadUser()
-    }
+    // const fireFinalActions = () => {
+    //     closeModal()
+    //     // loadUser()
+    // }
 
     const handleSubmit = async (event) => {
         console.log('estoy pagandoooo')
@@ -57,8 +57,7 @@ export const CheckoutForm = ({ idUser }) => {
                     const publisher = idUser
                     subscriptionsService
                         .createSubscription({ publisher, amount })
-                        .then(err => console.log(err))
-                    //catch
+                        .catch(err => console.log(err))
 
 
                     setpaymentResult(response.data)

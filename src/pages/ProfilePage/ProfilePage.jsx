@@ -9,9 +9,14 @@ import { useParams, Link } from "react-router-dom";
 import Messages from '../../components/Messages/Messages'
 import StripeContainer from '../../components/Stripe/StripeContainer'
 import SwitchUser from '../../components/SwitchUser/SwitchUser'
+import subscriptionsService from '../../services/subscriptions.service'
+import publisherService from '../../services/publisher.services'
+import NewPublisherForm from '../../components/NewPublisherForm/NewPublisherForm'
 
 
 const ProfilePage = () => {
+
+
 
     const { id } = useParams()
 
@@ -20,9 +25,16 @@ const ProfilePage = () => {
     const [showModal, setShowModal] = useState(false)
     const [messageData, setmessageData] = useState('')
 
+    const [payment, setPayment] = useState(false)
+    const [company, setCompany] = useState(false)
+
 
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
+    const fireFinalActions = () => {
+        closeModal()
+        loadUser()
+    }
 
     useEffect(() => loadUser(), [id])
 
@@ -30,19 +42,19 @@ const ProfilePage = () => {
         userService
             .editUser(id)
             .then(({ data }) => {
-                console.log('la data --->', data)
                 setUserDetails(data)
             })
             .then(err => console.log(err))
     }
-
-    const fireFinalActions = () => {
-        closeModal()
-        loadUser()
+    const [showModal2, setShowModal2] = useState(false)
+    const openModal2 = () => setShowModal2(true)
+    const closeModal2 = () => setShowModal2(false)
+    const fireFinalActions2 = () => {
+        closeModal2()
     }
 
     const userIdentity = isLoggedIn && id === user._id
-    //console.log(user)
+
     //////////////////////////
 
     const handleInputChange = e => {
@@ -55,15 +67,33 @@ const ProfilePage = () => {
 
         postsService
             .createPost(user._id, id, messageData) // (user_id, user)
-            .then(response => {
-
-            })
             .catch(err => console.log(err))
     }
     ///////////////////////////////
 
-    return (
+    subscriptionsService
+        .getOneSubscriber(id)
+        .then(({ data }) => {
 
+            if (data.length > 0) { setPayment(true) }
+
+
+        })
+        .catch(err => console.log(err))
+
+    ///////////////////////////////
+
+    publisherService
+        .getPublisherByOwner(id)
+        .then(({ data }) => {
+
+            if (data.length > 0) { setCompany(true) }
+
+        })
+        .catch(err => console.log(err))
+    console.log('SUS=', payment, company)
+
+    return (
         <>
             <Container>
                 <Row>
@@ -73,7 +103,8 @@ const ProfilePage = () => {
                     <Col>
                         {userIdentity && <Button onClick={openModal}>Editar Perfil</Button>}
                         {user?.role === 'ADMIN' && <SwitchUser userDetails={userDetails} />}
-                        {user?.role === 'PUBLISHER' && <StripeContainer idUser={user._id} />}
+                        {!payment && < StripeContainer idUser={id} />}
+                        {!company && payment && <Button onClick={openModal2}>REGISTRAR EMPRESA</Button>}
 
                     </Col>
                 </Row>
@@ -118,6 +149,14 @@ const ProfilePage = () => {
 
             </Container>
 
+            <Modal show={showModal2} onHide={closeModal2}>
+                <Modal.Header closeButton>
+                    <Modal.Title>REGISTRAR EMPRESA</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <NewPublisherForm fireFinalActions={fireFinalActions} owner={id} />
+                </Modal.Body>
+            </Modal>
 
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>
