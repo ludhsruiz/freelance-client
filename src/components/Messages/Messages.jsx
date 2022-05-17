@@ -29,7 +29,6 @@ const Messages = () => {
         recivedMessage[0]?.[0] ?
             <>
                 <h4>Mensajes recibidos</h4>
-
                 {
                     recivedMessage.map((message, index) => {
 
@@ -39,14 +38,13 @@ const Messages = () => {
                                 <br></br>
                             </div>
 
-
                         )
 
                     })
                 }
 
             </>
-            : <h1>SIN MENSAJES</h1>
+            : <h3>SIN MENSAJES</h3>
     )
 }
 

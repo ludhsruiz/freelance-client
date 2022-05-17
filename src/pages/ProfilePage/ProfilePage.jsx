@@ -16,8 +16,6 @@ import NewPublisherForm from '../../components/NewPublisherForm/NewPublisherForm
 
 const ProfilePage = () => {
 
-
-
     const { id } = useParams()
 
     const { user, isLoggedIn } = useContext(AuthContext)
@@ -130,7 +128,6 @@ const ProfilePage = () => {
                 <hr />
                 {userIdentity && <Messages />}
 
-
                 <hr />
                 <h4>Seguidores</h4>
                 <p>{userDetails.follower}</p>
@@ -144,8 +141,6 @@ const ProfilePage = () => {
                 <h4>Cursos</h4>
                 <p>{userDetails.following}</p>
                 <hr />
-
-
 
             </Container>
 

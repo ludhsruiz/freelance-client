@@ -77,9 +77,8 @@ export const CheckoutForm = ({ idUser }) => {
         <Container>
             <Row className='stripe'>
                 <Col>
-
-                    <img src="https://raw.githubusercontent.com/wiki/facebook/react/react-logo-1000-transparent.png" />
-                    <h3>Curso de React</h3>
+                    <h3>Pago Subscripción </h3>
+                    <h4>200€</h4>
 
                     <Form onSubmit={handleSubmit} >
                         <CardElement />

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import userService from "../../services/user.services.js"
+import uploadOneService from '../../services/uploadOne.service'
 
 const ProfileForm = ({ fireFinalActions, userDetails }) => {
 
@@ -13,7 +14,8 @@ const ProfileForm = ({ fireFinalActions, userDetails }) => {
         profileImg: userDetails.profileImg,
         role: userDetails.role,
         description: userDetails.description,
-        occupation: userDetails.occupation
+        occupation: userDetails.occupation,
+        bio: userDetails.bio
     })
 
     const handleInputChange = e => {
@@ -34,7 +36,7 @@ const ProfileForm = ({ fireFinalActions, userDetails }) => {
             .catch(err => console.log(err))
     }
 
-    const { name, surname, email, profileImg, role, description, occupation } = userData
+    const { name, surname, email, profileImg, role, description, bio, occupation } = userData
 
 
     return (
@@ -61,8 +63,13 @@ const ProfileForm = ({ fireFinalActions, userDetails }) => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="description">
-                <Form.Label>Descripción</Form.Label>
+                <Form.Label>Quote</Form.Label>
                 <Form.Control type="text" value={description} onChange={handleInputChange} name="description" />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="bio">
+                <Form.Label>Descripción</Form.Label>
+                <Form.Control type="text" value={bio} onChange={handleInputChange} name="bio" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="description">
