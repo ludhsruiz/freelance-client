@@ -38,8 +38,12 @@ class OffersService {
         return this.api.delete(`/${id}/delete`)
     }
     
-    OfferSubscribe = id => {
+    offerSubscribe = id => {
         return this.api.put(`/${id}/subscribe`)
+    }
+
+    offerUnsubscribe = id => {
+        return this.api.put(`/${id}/unsubscribe`)
     }
 
     verify = token => {

@@ -52,4 +52,4 @@ class CoursesService {
 
 const coursesService = new CoursesService()
 
-export default coursesService
+export default coursesService  

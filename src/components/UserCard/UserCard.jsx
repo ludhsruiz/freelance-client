@@ -7,7 +7,7 @@ import { useContext, useEffect, useState } from "react"
 import FollowBtn from "../FollowBtn/FollowBtn"
 import userService from '../../services/user.services'
 
-const UserCard = ({ _id, name, profileImg, descirption, occupation }) => {
+const UserCard = ({ _id, name, profileImg, description, ocupation }) => {
 
 
     const { user, isLoggedIn } = useContext(AuthContext)
@@ -16,6 +16,55 @@ const UserCard = ({ _id, name, profileImg, descirption, occupation }) => {
     const [btnState, setBtnState] = useState('Cargando...')
 
 
+    useEffect(() => {
+        user?._id && checkIfFollowed()
+    }, [user])
+
+    
+    const checkIfFollowed = () => {
+        userService
+            .getUser(user._id)
+            .then(({ data }) => {
+
+                let foundUser = ''
+
+                data?.following.forEach(elm => {
+                    if (elm._id === _id) {
+                        foundUser = elm._id
+                    }
+                })
+
+                if (foundUser === '') {
+                    setIsFollowing(false)
+                    setBtnState('Follow')
+                } else {
+                    setIsFollowing(true)
+                    setBtnState('unfollow')
+                }
+            })
+    }
+
+
+    const handleFollowBtn = () => {
+
+        if (!isFollowing) {
+            userService
+                .followUser(_id)
+                .then(() => {
+                    setIsFollowing(true)
+                    setBtnState('Unfollow')
+                })
+                .catch(err => console.log(err))
+        } else if (isFollowing) {
+            userService
+                .unfollowUser(_id)
+                .then(() => {
+                    setIsFollowing(false)
+                    setBtnState('Follow')
+                })
+                .catch(err => console.log(err))
+        }
+    }
 
 
     return (
@@ -30,7 +79,7 @@ const UserCard = ({ _id, name, profileImg, descirption, occupation }) => {
 
                 </Card.Text>
                 {isLoggedIn && <Link to={`/perfil/${_id}`} className="btn btn-dark">Ver detalles</Link>}
-
+                <FollowBtn btnState={btnState} handleFollowBtn={handleFollowBtn} />                
             </Card.Body>
         </Card>
 

@@ -5,6 +5,7 @@ import offersService from '../../services/offers.services'
 import { AuthContext } from './../../context/auth.context'
 import OfferDetailCard from '../../components/OfferDetailCard/OfferDetailCard'
 import { useNavigate, useParams } from 'react-router-dom'
+import SubsBtn from '../../components/SubscribeBtn/SubsBtn'
 // import { MessageContext } from './../../context/message.context'
 
 
@@ -17,7 +18,7 @@ const OffersDetail = () => {
     const closeModal = () => setShowModal(false)
 
     const { id } = useParams()
-    const { user } = useContext(AuthContext)
+    const { user, isLoggedIn } = useContext(AuthContext)
 
     useEffect(() => loadOffer(), [])
 
@@ -30,7 +31,6 @@ const OffersDetail = () => {
             .then(err => console.log(err))
     }
 
-    const { isLoggedIn } = useContext(AuthContext)
     // const { showMessage } = useContext(MessageContext)
 
     const fireFinalActions = () => {
@@ -49,71 +49,73 @@ const OffersDetail = () => {
     }
 
 
-// const [offerDetails,SetOfferdetails] = usestate()
-    // const [isSub, setIsSub] = useState()
-    // const [btnState, setBtnState] = useState('Cargando...')
+    const [isSubs, setIsSubs] = useState()
+    const [btnState, setBtnState] = useState('Cargando...')
 
 
-    // useEffect(() => {
-    //     offer._id && checkIfSub()
-    // }, [user, offer._id])
+    useEffect(() => {
+        id && checkIfSubs()
+    }, [offer])
 
 
-    // const checkIfSubscribe = () => {
-    //     offersService
-    //         .getOneOffer (id)  
-    //         .then(({ data }) => {
+    const checkIfSubs = () => {
+        offersService
+            .getOneOffer(id)  
+            .then(({ data }) => {
 
-    //             let foundSubs = ''
+                let foundSubs = ''
 
-    //             data?.offer????????.forEach(elm => {
-    //                 if (elm.name === offerDetails._id) {
-    //                     foundSubs = elm.name
-    //                 }
-    //             })
+                data?.subscribers.forEach(elm => {
+                    if (elm._id === id) {
+                        foundSubs = elm._id
+                    }
+                })
 
-    //             if (foundSubs !== '') {
-    //                 setIsSub(true)
-    //                 setBtnState('Unsibscribe')
-    //             } else {
-    //                 setIsSub(false)
-    //                 setBtnState('subscribe')
-    //             }
-    //         })
-    // }
+                if (foundSubs !== '') {
+                    setIsSubs(true)
+                    setBtnState('Unsubscribe')
+                } else {
+                    setIsSubs(false)
+                    setBtnState('subscribe')
+                }
+            })
+    }
 
 
-    // const handleSubBtn = () => {
+    const handleSubsBtn = () => {
 
-    //     if (!isSubsc) {
-    //         userService
-    //             .offerSubscribe(offer_id)
-    //             .then(() => {
-    //                 setIsSub(true)
-    //                 setBtnState('unsubscribe')
-    //             })
-    //             .catch(err => console.log(err))
-    //     } else if (isFav) {
-    //         userService
-    //             .offerUnsubscribe(offer_id)
-    //             .then(() => {
-    //                 setIsSub(false)
-    //                 setBtnState('Subscribe')
-    //             })
-    //             .catch(err => console.log(err))
-    //     }
-    // }
+        if (!isSubs) {
+            offersService
+                .offerSubscribe(id)
+                .then(() => {
+                    setIsSubs(true)
+                    setBtnState('unsubscribe')
+                })
+                .catch(err => console.log(err))
+        } else if (isSubs) {
+            offersService
+                .offerUnsubscribe(id)
+                .then(() => {
+                    setIsSubs(false)
+                    setBtnState('Subscribe')
+                })
+                .catch(err => console.log(err))
+        }
+    }
 
 
     return (
         <>
             <Container>
                 <OfferDetailCard {...offer} />
-                 <>
-                    <Button onClick={openModal}>Edit</Button>
-                    <Button className='myBtn' onClick={handleDeleteOfferBtn}>Eliminar</Button>
-                </>
-                {/* offer.publisher === user?._id && */}
+                
+                <Button onClick={openModal}>Edit</Button>
+                <Button className='myBtn' onClick={handleDeleteOfferBtn}>Eliminar</Button>
+                
+               
+
+                <SubsBtn btnState={btnState} handleSubsBtn={handleSubsBtn} />                
+
                 <hr />
             </Container>
 

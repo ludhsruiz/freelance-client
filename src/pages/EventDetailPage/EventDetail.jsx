@@ -18,7 +18,8 @@ const EventDetail = () => {
     const closeModal = () => setShowModal(false)
 
     const { id } = useParams()
-    const { user } = useContext(AuthContext)
+    const { user, isLoggedIn } = useContext(AuthContext)
+
 
     useEffect(() => loadEvent(), [])
 
@@ -31,7 +32,6 @@ const EventDetail = () => {
             .then(err => console.log(err))
     }
 
-    const { isLoggedIn } = useContext(AuthContext)
     // const { showMessage } = useContext(MessageContext)
 
     const fireFinalActions = () => {
@@ -50,6 +50,7 @@ const EventDetail = () => {
             .catch(err => console.log(err))
     }
 
+
     return (
         <>
             <Container>
@@ -59,8 +60,8 @@ const EventDetail = () => {
                 <Button className='myBtn' onClick={handleDeleteEventBtn}>Eliminar</Button>
                 <hr />
             </Container>
-            <StripeContainerEvent />
 
+            <StripeContainerEvent eventId={id}/>
 
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>
