@@ -8,6 +8,7 @@ import MessagePayment from "./MessagePayment";
 
 
 export const CheckoutForm = () => {
+    
     const stripe = useStripe();
     const elements = useElements();
 

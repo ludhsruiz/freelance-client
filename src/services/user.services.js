@@ -28,7 +28,9 @@ class UserService {
 
     followUser = user_id => {
         return this.api.put(`/${user_id}/follow`)
+
     }
+
 
     unfollowUser = user_id => {
         return this.api.put(`/${user_id}/unfollow`)

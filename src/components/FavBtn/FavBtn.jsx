@@ -31,34 +31,34 @@ export default FavBtn
 //     const { user } = useContext(AuthContext)
 
 
-//     useEffect(() => {
-//         houseDetails.name && checkIfFav()
-//     }, [user, houseDetails])
+    // useEffect(() => {
+    //     houseDetails.name && checkIfFav()
+    // }, [user, houseDetails])
 
 
 
-//     const checkIfFav = () => {
-//         userService
-//             .getUserDetails()
-//             .then(({ data }) => {
+    // const checkIfFav = () => {
+    //     userService
+    //         .getUserDetails()
+    //         .then(({ data }) => {
 
-//                 let foundFavHouse = ''
+    //             let foundFavHouse = ''
 
-//                 data?.favHouses.forEach(elm => {
-//                     if (elm.name === houseDetails.name) {
-//                         foundFavHouse = elm.name
-//                     }
-//                 })
+    //             data?.favHouses.forEach(elm => {
+    //                 if (elm.name === houseDetails.name) {
+    //                     foundFavHouse = elm.name
+    //                 }
+    //             })
 
-//                 if (foundFavHouse !== '') {
-//                     setIsFav(true)
-//                     setBtnState('Eliminar de favoritos')
-//                 } else {
-//                     setIsFav(false)
-//                     setBtnState('Añadir a favoritos')
-//                 }
-//             })
-//     }
+    //             if (foundFavHouse !== '') {
+    //                 setIsFav(true)
+    //                 setBtnState('Eliminar de favoritos')
+    //             } else {
+    //                 setIsFav(false)
+    //                 setBtnState('Añadir a favoritos')
+    //             }
+    //         })
+    // }
 
 
 //     const handleFavBtn = () => {

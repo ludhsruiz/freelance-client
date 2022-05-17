@@ -48,6 +48,63 @@ const OffersDetail = () => {
             .catch(err => console.log(err))
     }
 
+
+// const [offerDetails,SetOfferdetails] = usestate()
+    // const [isSub, setIsSub] = useState()
+    // const [btnState, setBtnState] = useState('Cargando...')
+
+
+    // useEffect(() => {
+    //     offer._id && checkIfSub()
+    // }, [user, offer._id])
+
+
+    // const checkIfSubscribe = () => {
+    //     offersService
+    //         .getOneOffer (id)  
+    //         .then(({ data }) => {
+
+    //             let foundSubs = ''
+
+    //             data?.offer????????.forEach(elm => {
+    //                 if (elm.name === offerDetails._id) {
+    //                     foundSubs = elm.name
+    //                 }
+    //             })
+
+    //             if (foundSubs !== '') {
+    //                 setIsSub(true)
+    //                 setBtnState('Unsibscribe')
+    //             } else {
+    //                 setIsSub(false)
+    //                 setBtnState('subscribe')
+    //             }
+    //         })
+    // }
+
+
+    // const handleSubBtn = () => {
+
+    //     if (!isSubsc) {
+    //         userService
+    //             .offerSubscribe(offer_id)
+    //             .then(() => {
+    //                 setIsSub(true)
+    //                 setBtnState('unsubscribe')
+    //             })
+    //             .catch(err => console.log(err))
+    //     } else if (isFav) {
+    //         userService
+    //             .offerUnsubscribe(offer_id)
+    //             .then(() => {
+    //                 setIsSub(false)
+    //                 setBtnState('Subscribe')
+    //             })
+    //             .catch(err => console.log(err))
+    //     }
+    // }
+
+
     return (
         <>
             <Container>
@@ -68,6 +125,7 @@ const OffersDetail = () => {
                     <OfferEditForm fireFinalActions={fireFinalActions} offer={offer} />
                 </Modal.Body>
             </Modal>
+
         </>
     )
 }
@@ -75,7 +133,4 @@ const OffersDetail = () => {
 export default OffersDetail
 
 
-// editOffer = (id, offer) => {  return this.api.put(`${id}/edit`, offer)}
-// deleteOffer = id => {   return this.api.delete(`${id}/delete`)}
-// OfferSubscribe = id => {   return this.api.put(`${id}/subscribe`)}
-// subscribe send id and add to publisher (subscribers to offer)
+// subscribe send id and add to publisher (subscribers to offer) message to publisher who publish the offer change of routes
