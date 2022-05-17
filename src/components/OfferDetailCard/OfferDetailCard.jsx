@@ -3,7 +3,7 @@ import { Container, Image } from "react-bootstrap"
 const OfferDetailCard = ({ title, companyLogo, companyName, description }) => {
 
     return (
-        <>
+        
             <Container>
                 <h2>{title}</h2>
                 <hr></hr>
@@ -12,7 +12,7 @@ const OfferDetailCard = ({ title, companyLogo, companyName, description }) => {
                 <p>{description}</p>
                 <hr></hr>
             </Container>
-        </>
+        
     )
 }
 

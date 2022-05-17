@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/auth.context'
 import CourseDetailCard from '../../components/CourseDetailCard/CourseDetailCard'
 import { useNavigate, useParams } from 'react-router-dom'
 // import { MessageContext } from './../../context/message.context'
-
+import StripeContainerCourse from '../../components/StripeCourse/StripeContainer'
 
 const CoursesDetail = () => {
 
@@ -57,6 +57,8 @@ const CoursesDetail = () => {
                 <Button className='myBtn' onClick={handleDeleteCourseBtn}>Eliminar</Button>  
                 <hr />
             </Container>
+
+            <StripeContainerCourse courseId={id}/>
 
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>

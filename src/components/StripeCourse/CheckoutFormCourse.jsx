@@ -5,9 +5,11 @@ import { Form, Button, Row, Col, Container, Modal } from "react-bootstrap"
 import './CheckoutForm.css'
 import { useState, useEffect } from "react"
 import MessagePayment from "./MessagePayment";
+import coursesService from "../../services/courses.services";
 
 
-export const CheckoutForm = () => {
+export const CheckoutFormCourse = ({courseId}) => {
+    
     const stripe = useStripe();
     const elements = useElements();
 
@@ -48,9 +50,10 @@ export const CheckoutForm = () => {
 
                 console.log("Stripe 35 | data", response.data.success);
                 if (response.data.success) {
-                    console.log("CheckoutForm.js 25 | payment successful!");
-                    console.log('RESPONSE= ', response.data.success)
-                    console.log('RESPONSEDATA= ', response.data)
+                   
+                coursesService  
+                    .courseAttendance (courseId)
+
                     setpaymentResult(response.data)
                     setShowModal(true)
 
