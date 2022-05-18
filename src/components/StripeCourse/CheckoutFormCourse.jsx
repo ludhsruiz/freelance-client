@@ -72,15 +72,14 @@ export const CheckoutFormCourse = ({courseId}) => {
             <Row className='stripe'>
                 <Col>
 
-                    <img src="https://raw.githubusercontent.com/wiki/facebook/react/react-logo-1000-transparent.png" />
-                    <h3>Curso de React</h3>
+                    <h3>Curso title-price</h3>
 
                     <Form onSubmit={handleSubmit} >
 
                         <CardElement />
                         <hr />
                         <Button variant="primary" type="submit">
-                            Pagar
+                        Pagar
                         </Button>
                     </Form>
 

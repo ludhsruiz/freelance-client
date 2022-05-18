@@ -47,7 +47,7 @@ const NewOfferForm = ({ fireFinalActions }) => {
             .uploadOneImage(uploadData)
             .then(({ data }) => {
                 setLoadingImage(false)
-                setPublisherData({ ...offerData, companyLogo: data.cloudinary_url })
+                setOfferData({ ...offerData, companyLogo: data.cloudinary_url })
             })
             .catch(err => console.log(err))
     }
@@ -64,11 +64,6 @@ const NewOfferForm = ({ fireFinalActions }) => {
                 <Form.Control type="text" value={title} onChange={handleInputChange} name="title" />
             </Form.Group>
 
-            {/* <Form.Group className="mb-3" controlId="imageUrl">
-                <Form.Label>Company Logo</Form.Label>
-                <Form.Control type="text" value={companyLogo} onChange={handleInputChange} name="companyLogo" />
-            </Form.Group> */}
-
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Company Name </Form.Label>
                 <Form.Control type="text" value={companyName} onChange={handleInputChange} name="companyName" />
@@ -76,8 +71,7 @@ const NewOfferForm = ({ fireFinalActions }) => {
 
             <Form.Group className="mb-3" controlId="description">
                 <Form.Label>Descripción</Form.Label>
-                <Form.Control type="text" value={description} onChange={handleInputChange} name="description" />
-                {/* <Form.Text className="text-muted">Mínimo 20 caracteres</Form.Text> */}
+                <Form.Control as="textarea" rows={4} value={description} onChange={handleInputChange} name="description" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="companyLogo">
@@ -85,7 +79,6 @@ const NewOfferForm = ({ fireFinalActions }) => {
                 <Form.Control type="file" onChange={handleImageUpload} />
             </Form.Group>
 
-            {/* <Button variant="dark" type="submit">CREAR OFEERTA</Button> */}
             <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'CREAR OFERTA'}</Button>
         </Form>
 

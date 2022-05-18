@@ -6,6 +6,8 @@ import { AuthContext } from '../../context/auth.context'
 import EventDetailCard from '../../components/EventDetailCard/EventDetailCard'
 import { useNavigate, useParams } from 'react-router-dom'
 import StripeContainerEvent from '../../components/StripeEvent/StripeContainer'
+import {Trash3, Pencil} from 'react-bootstrap-icons'
+
 // import { MessageContext } from './../../context/message.context'
 
 
@@ -55,10 +57,8 @@ const EventDetail = () => {
         <>
             <Container>
                 <EventDetailCard {...event} />
-                {event.owner === user?._id || user.role=== 'ADMIN' &&
-                <Button onClick={openModal}>Edit</Button> }
-                {event.owner === user?._id || user.role=== 'ADMIN' &&
-                <Button className='myBtn' onClick={handleDeleteEventBtn}>Eliminar</Button>}
+                {(event.owner === user?._id || user.role=== 'ADMIN') &&
+                <><Button onClick={openModal}><Pencil/></Button><Button className='myBtn' onClick={handleDeleteEventBtn}><Trash3/></Button></>}
                 <hr />
             </Container>
 

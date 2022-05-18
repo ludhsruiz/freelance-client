@@ -7,6 +7,7 @@ import CourseDetailCard from '../../components/CourseDetailCard/CourseDetailCard
 import { useNavigate, useParams } from 'react-router-dom'
 // import { MessageContext } from './../../context/message.context'
 import StripeContainerCourse from '../../components/StripeCourse/StripeContainer'
+import {Trash3, Pencil} from 'react-bootstrap-icons'
 
 const CoursesDetail = () => {
 
@@ -53,10 +54,8 @@ const CoursesDetail = () => {
         <>
             <Container>
                 <CourseDetailCard {...course} />
-                {course.owner === user?._id || user.role === 'ADMIN' &&   
-                <Button onClick={openModal}>Edit</Button> }
-                {course.owner === user?._id || user.role === 'ADMIN' &&   
-                <Button className='myBtn' onClick={handleDeleteCourseBtn}>Eliminar</Button> } 
+                {(course.publisher === user?._id || user.role=== 'ADMIN') &&
+                <><Button onClick={openModal}><Pencil/></Button><Button className='myBtn' onClick={handleDeleteCourseBtn}><Trash3/></Button></> } 
                 <hr />
             </Container>
 

@@ -6,6 +6,7 @@ import { AuthContext } from './../../context/auth.context'
 import OfferDetailCard from '../../components/OfferDetailCard/OfferDetailCard'
 import { useNavigate, useParams } from 'react-router-dom'
 import SubsBtn from '../../components/SubscribeBtn/SubsBtn'
+import {Trash3, Pencil} from 'react-bootstrap-icons'
 // import { MessageContext } from './../../context/message.context'
 
 
@@ -108,12 +109,8 @@ const OffersDetail = () => {
         <>
             <Container>
                 <OfferDetailCard {...offer} />
-                {offer.publisher === user?._id || user.role=== 'ADMIN' &&
-                <Button onClick={openModal}>Edit</Button>}
-                {offer.publisher === user?._id || user.role=== 'ADMIN' &&
-                <Button className='myBtn' onClick={handleDeleteOfferBtn}>Eliminar</Button>}
-                
-               
+                {(offer.publisher === user?._id || user.role=== 'ADMIN') &&
+                <><Button className='myBtn' onClick={handleDeleteOfferBtn}><Trash3/></Button><Button onClick={openModal}><Pencil/></Button></>}
 
                 <SubsBtn btnState={btnState} handleSubsBtn={handleSubsBtn} />                
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import userService from "../../services/user.services.js"
-// import uploadOneService from '../../services/uploadOne.service'
+import uploadOneService from '../../services/uploadOne.service'
 
 const ProfileForm = ({ fireFinalActions, userDetails }) => {
 
@@ -17,7 +17,7 @@ const ProfileForm = ({ fireFinalActions, userDetails }) => {
         bio: userDetails.bio
     })
 
-    // const [loadingImage, setLoadingImage] = useState(false)
+    const [loadingImage, setLoadingImage] = useState(false)
 
 
     const handleInputChange = e => {
@@ -38,21 +38,21 @@ const ProfileForm = ({ fireFinalActions, userDetails }) => {
             .catch(err => console.log(err))
     }
 
-    // const handleImageUpload = (e) => {
+    const handleImageUpload = (e) => {
 
-    //     setLoadingImage(true)
+        setLoadingImage(true)
 
-    //     const uploadData = new FormData()
-    //     uploadData.append('imageData', e.target.files[0])
+        const uploadData = new FormData()
+        uploadData.append('imageData', e.target.files[0])
 
-    //     uploadOneService
-    //         .uploadOneImage(uploadData)
-    //         .then(({ data }) => {
-    //             setLoadingImage(false)
-    //             setPublisherData({ ...publisherData, profileImg: data.cloudinary_url })
-    //         })
-    //         .catch(err => console.log(err))
-    // }
+        uploadOneService
+            .uploadOneImage(uploadData)
+            .then(({ data }) => {
+                setLoadingImage(false)
+                setuserData({ ...userData, profileImg: data.cloudinary_url })
+            })
+            .catch(err => console.log(err))
+    }
 
     const { name, surname, email, profileImg, role, description, bio, occupation } = userData
 
@@ -76,14 +76,9 @@ const ProfileForm = ({ fireFinalActions, userDetails }) => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="profileImg">
-                <Form.Label>Imagen (URL)</Form.Label>
-                <Form.Control type="text" value={profileImg} onChange={handleInputChange} name="profileImg" />
-            </Form.Group>
-
-            {/* <Form.Group className="mb-3" controlId="profileImg">
-                <Form.Label>Image</Form.Label>
+                <Form.Label>Imagen perfil</Form.Label>
                 <Form.Control type="file" onChange={handleImageUpload} />
-            </Form.Group> */}
+            </Form.Group>
 
             <Form.Group className="mb-3" controlId="description">
                 <Form.Label>Quote</Form.Label>
@@ -92,7 +87,7 @@ const ProfileForm = ({ fireFinalActions, userDetails }) => {
 
             <Form.Group className="mb-3" controlId="bio">
                 <Form.Label>Descripción</Form.Label>
-                <Form.Control type="text" value={bio} onChange={handleInputChange} name="bio" />
+                <Form.Control as="textarea" rows={4} value={bio} onChange={handleInputChange} name="bio" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="description">
@@ -112,12 +107,10 @@ const ProfileForm = ({ fireFinalActions, userDetails }) => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="role">
-                <Form.Label>Descripción</Form.Label>
                 <Form.Control type="hidden" value={role} name="role" />
             </Form.Group>
 
-            <Button variant="dark" type="submit">Guardar</Button>
-            {/* <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'GUARDAR'}</Button> */}
+            <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'GUARDAR'}</Button>
 
         </Form>
 

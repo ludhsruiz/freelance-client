@@ -38,7 +38,7 @@ const EventsPage = () => {
         <>
             <Container>
                 <h1> EVENTOS DISPONIBLES </h1>
-                {isLoggedIn && user.role === 'PUBLISHER'&&
+                {isLoggedIn && (user.role === 'PUBLISHER'|| user.role=== 'ADMIN') &&
                 <Button onClick={openModal}>Crear nuevo</Button>}
                 <hr />
                 <EventsList events={events} />

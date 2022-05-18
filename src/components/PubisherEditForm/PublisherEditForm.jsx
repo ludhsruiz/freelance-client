@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import publisherService from "../../services/publisher.services"
-// import uploadService from "../../services/upload.service"
+import uploadOneService from '../../services/uploadOne.service'
 
 
 
@@ -15,6 +15,9 @@ const PublisherEditForm = ({ publishers, fireFinalActionsEdit }) => {
         contacto: publishers.contacto,
         
     })
+
+    const [loadingImage, setLoadingImage] = useState(false)
+
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -37,23 +40,21 @@ const PublisherEditForm = ({ publishers, fireFinalActionsEdit }) => {
 
     }
 
+    const handleImageUpload = (e) => {
 
-    // const handleImageUpload = (e) => {
+        setLoadingImage(true)
 
-    //     setLoadingImage(true)
+        const uploadData = new FormData()
+        uploadData.append('imageData', e.target.files[0])
 
-    //     const uploadData = new FormData()
-    //     uploadData.append('imageData', e.target.files[0])
-
-    //     uploadService
-    //         .uploadImage(uploadData)
-    //         .then(({ data }) => {
-    //             setLoadingImage(false)
-    //             setCoasterData({ ...coasterData, imageUrl: data.cloudinary_url })
-    //         })
-    //         .catch(err => console.log(err))
-    // }
-
+        uploadOneService
+            .uploadOneImage(uploadData)
+            .then(({ data }) => {
+                setLoadingImage(false)
+                setPublisherState({ ...publisherState, companyLogo: data.cloudinary_url })
+            })
+            .catch(err => console.log(err))
+    }
 
 
     
@@ -67,12 +68,7 @@ const PublisherEditForm = ({ publishers, fireFinalActionsEdit }) => {
 
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Descripcion</Form.Label>
-                <Form.Control type="text" value={publisherState.description} onChange={handleInputChange} name="description" />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="name">
-                <Form.Label>Company Logo</Form.Label>
-                <Form.Control type="text" value={publisherState.companyLogo} onChange={handleInputChange} name="companyLogo" />
+                <Form.Control as="textarea" rows={4} value={publisherState.description} onChange={handleInputChange} name="description" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="name">
@@ -80,13 +76,12 @@ const PublisherEditForm = ({ publishers, fireFinalActionsEdit }) => {
                 <Form.Control type="text" value={publisherState.contacto} onChange={handleInputChange} name="contacto" />
             </Form.Group>
 
-           {/* <Form.Group className="mb-3" controlId="imageUrl">
-                <Form.Label>Imagen (archivo)</Form.Label>
+           <Form.Group className="mb-3" controlId="companyLogo">
+                <Form.Label>Company Logo</Form.Label>
                 <Form.Control type="file" onChange={handleImageUpload} />
-            </Form.Group> */}
+            </Form.Group>
 
-            <Button variant="dark" type="submit" >GUARDAR</Button>
-            {/* <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Crear montaña rusa'}</Button> */}
+            <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Guardar'}</Button>
         </Form>
 
     )
