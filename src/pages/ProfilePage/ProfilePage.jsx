@@ -89,7 +89,6 @@ const ProfilePage = () => {
 
         })
         .catch(err => console.log(err))
-    //console.log('SUS=', payment, company)
 
     return (
         <>

@@ -3,7 +3,8 @@ import OfferList from '../../components/OfferList/OfferList'
 import { useEffect, useState } from "react"
 import NewOfferForm from '../../components/NewOfferform/NewOfferForm'
 import offersService from '../../services/offers.services'
-// import { AuthContext } from './../../context/auth.context'
+import { AuthContext } from './../../context/auth.context'
+import { useContext } from 'react'
 // import { MessageContext } from './../../context/message.context'
 
 const OffersPage = () => {
@@ -32,11 +33,14 @@ const OffersPage = () => {
     }
 
 
+    const {user, isLoggedIn } = useContext(AuthContext) 
+
     return (
         <>
             <Container>
                 <h1>OFERTAS DE TRABAJO </h1>
-                <Button onClick={openModal}>Crear nueva</Button>
+                {isLoggedIn && user.role === 'PUBLISHER'&&
+                <Button onClick={openModal}>Crear nueva</Button>}
                 <hr />
                 <OfferList offers={offers} />
             </Container>

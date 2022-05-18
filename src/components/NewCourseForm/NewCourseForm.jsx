@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import coursesService from "../../services/courses.services"
-// import uploadService from "../../services/upload.service"
+import uploadOneService from '../../services/uploadOne.service'
 
 
 const NewCourseForm = ({ fireFinalActions }) => {
@@ -15,7 +15,7 @@ const NewCourseForm = ({ fireFinalActions }) => {
         price: '',
     })
 
-    // const [loadingImage, setLoadingImage] = useState(false)
+    const [loadingImage, setLoadingImage] = useState(false)
 
     const handleInputChange = e => {
         const { name, value } = e.currentTarget
@@ -38,23 +38,24 @@ const NewCourseForm = ({ fireFinalActions }) => {
             .catch(err => console.log(err))
     }
 
-    // const handleImageUpload = (e) => {
+    const handleImageUpload = (e) => {
 
-    //     setLoadingImage(true)
+        setLoadingImage(true)
 
-    //     const uploadData = new FormData()
-    //     uploadData.append('imageData', e.target.files[0])
+        const uploadData = new FormData()
+        uploadData.append('imageData', e.target.files[0])
 
-    //     uploadService
-    //         .uploadImage(uploadData)
-    //         .then(({ data }) => {
-    //             setLoadingImage(false)
-    //             setCoasterData({ ...coasterData, imageUrl: data.cloudinary_url })
-    //         })
-    //         .catch(err => console.log(err))
-    // }
+        uploadOneService
+            .uploadOneImage(uploadData)
+            .then(({ data }) => {
+                setLoadingImage(false)
+                setPublisherData({ ...courseData, img: data.cloudinary_url })
+            })
+            .catch(err => console.log(err))
+    }
 
-    const { name, description, date, img, location, price } = courseData
+
+    const { name, description, date, location, price } = courseData
 
 
     return (
@@ -70,10 +71,15 @@ const NewCourseForm = ({ fireFinalActions }) => {
                 <Form.Control type="text" value={description} onChange={handleInputChange} name="description" />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="name">
+            <Form.Group className="mb-3" controlId="img">
+                <Form.Label>Imagen (archivo)</Form.Label>
+                <Form.Control type="file" onChange={handleImageUpload} />
+            </Form.Group>
+
+            {/* <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Imagen</Form.Label>
                 <Form.Control type="text" value={img} onChange={handleInputChange} name="img" />
-            </Form.Group>
+            </Form.Group> */}
 
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Date</Form.Label>
@@ -95,8 +101,8 @@ const NewCourseForm = ({ fireFinalActions }) => {
                 <Form.Control type="file" onChange={handleImageUpload} />
             </Form.Group> */}
 
-            <Button variant="dark" type="submit">PUBLICAR CURSO</Button>
-            {/* <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Crear montaña rusa'}</Button> */}
+            {/* <Button variant="dark" type="submit">PUBLICAR CURSO</Button> */}
+            <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'PUBLICAR CURSO'}</Button>
         </Form>
 
     )

@@ -3,7 +3,8 @@ import CoursesList from '../../components/CoursesList/CoursesList'
 import { useEffect, useState } from "react"
 import NewCourseForm from '../../components/NewCourseForm/NewCourseForm'
 import coursesService from '../../services/courses.services'
-// import { AuthContext } from './../../context/auth.context'
+import { useContext } from 'react'
+import { AuthContext } from './../../context/auth.context'
 // import { MessageContext } from './../../context/message.context'
 
 const CoursesPage = () => {
@@ -31,12 +32,14 @@ const CoursesPage = () => {
         // showMessage('CourseCreated')
     }
 
+    const {isLoggedIn } = useContext(AuthContext) 
 
     return (
         <>
             <Container>
                 <h1> CURSOS DISPONIBLES </h1>
-                <Button onClick={openModal}>Crear nuevo</Button>
+                {isLoggedIn &&   
+                <Button onClick={openModal}>Crear nuevo</Button>}
                 <hr />
                 <CoursesList courses={courses} />
             </Container>

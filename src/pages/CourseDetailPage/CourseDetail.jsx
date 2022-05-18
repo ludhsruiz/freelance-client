@@ -48,13 +48,15 @@ const CoursesDetail = () => {
             .catch(err => console.log(err))
     }
 
+
     return (
         <>
             <Container>
                 <CourseDetailCard {...course} />
-                {/* {course.publisher === user?._id &&     -------- }  */}
-                <Button onClick={openModal}>Edit</Button>
-                <Button className='myBtn' onClick={handleDeleteCourseBtn}>Eliminar</Button>  
+                {course.owner === user?._id || user.role === 'ADMIN' &&   
+                <Button onClick={openModal}>Edit</Button> }
+                {course.owner === user?._id || user.role === 'ADMIN' &&   
+                <Button className='myBtn' onClick={handleDeleteCourseBtn}>Eliminar</Button> } 
                 <hr />
             </Container>
 

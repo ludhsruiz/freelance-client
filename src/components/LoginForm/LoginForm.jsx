@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/auth.context'
 
 
-
 const Loginform = () => {
 
     const [loginData, setLoginData] = useState({
@@ -16,6 +15,11 @@ const Loginform = () => {
     const navigate = useNavigate()
 
     const { user, storeToken, authenticateUser } = useContext(AuthContext)
+
+    useEffect(() => {
+        user?._id && triggerUser()
+    }, [user])
+
 
     useEffect(() => {
         user?._id && triggerUser()
@@ -37,6 +41,7 @@ const Loginform = () => {
             navigate(`/perfil/${user._id}`)
         }
     }
+
 
     const handleInputChange = e => {
         const { value, name } = e.currentTarget

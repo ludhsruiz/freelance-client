@@ -3,7 +3,8 @@ import EventsList from '../../components/EventList/EventList'
 import { useEffect, useState } from "react"
 import NewEventForm from '../../components/NewEventForm/NewEventForm'
 import eventsService from '../../services/events.services'
-// import { AuthContext } from './../../context/auth.context'
+import { useContext } from 'react'
+import { AuthContext } from './../../context/auth.context'
 // import { MessageContext } from './../../context/message.context'
 
 const EventsPage = () => {
@@ -31,12 +32,14 @@ const EventsPage = () => {
         // showMessage('EventCreated')
     }
 
+    const {user, isLoggedIn } = useContext(AuthContext) 
 
     return (
         <>
             <Container>
                 <h1> EVENTOS DISPONIBLES </h1>
-                <Button onClick={openModal}>Crear nuevo</Button>
+                {isLoggedIn && user.role === 'PUBLISHER'&&
+                <Button onClick={openModal}>Crear nuevo</Button>}
                 <hr />
                 <EventsList events={events} />
             </Container>

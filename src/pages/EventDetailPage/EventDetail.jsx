@@ -55,9 +55,10 @@ const EventDetail = () => {
         <>
             <Container>
                 <EventDetailCard {...event} />
-                {/* {offer.publisher === user?._id &&  --------------- } */}
-                <Button onClick={openModal}>Edit</Button>
-                <Button className='myBtn' onClick={handleDeleteEventBtn}>Eliminar</Button>
+                {event.owner === user?._id || user.role=== 'ADMIN' &&
+                <Button onClick={openModal}>Edit</Button> }
+                {event.owner === user?._id || user.role=== 'ADMIN' &&
+                <Button className='myBtn' onClick={handleDeleteEventBtn}>Eliminar</Button>}
                 <hr />
             </Container>
 
