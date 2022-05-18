@@ -66,13 +66,8 @@ const NewEventForm = ({ fireFinalActions }) => {
 
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Descripcion</Form.Label>
-                <Form.Control type="text" value={description} onChange={handleInputChange} name="description" />
+                <Form.Control as="textarea" rows={4} value={description} onChange={handleInputChange} name="description" />
             </Form.Group>
-
-            {/* <Form.Group className="mb-3" controlId="name">
-                <Form.Label>Imagen</Form.Label>
-                <Form.Control type="text" value={img} onChange={handleInputChange} name="img" />
-            </Form.Group> */}
 
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Date</Form.Label>
@@ -94,7 +89,6 @@ const NewEventForm = ({ fireFinalActions }) => {
                 <Form.Control type="file" onChange={handleImageUpload} />
             </Form.Group>
 
-            {/* <Button variant="dark" type="submit">PUBLICAR EVENTO</Button> */}
             <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'PUBLICAR EVENTO'}</Button>
         </Form>
 

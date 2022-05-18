@@ -6,6 +6,8 @@ import { AuthContext } from './../../context/auth.context'
 import PublisherEditForm from '../../components/PubisherEditForm/PublisherEditForm'
 import publisherService from '../../services/publisher.services'
 import { Navigate } from "react-router-dom"
+import {Trash3, Pencil} from 'react-bootstrap-icons'
+
 
 
 const PublisherCard = ({ _id, name, contacto, companyLogo, description, loadPublishers }) => {
@@ -40,12 +42,9 @@ const PublisherCard = ({ _id, name, contacto, companyLogo, description, loadPubl
             <Card.Body>
                 <Card.Title>{contacto}</Card.Title>
                 <Card.Text>{description}</Card.Text>
-                <div className="d-grid gap-2">
-                    {publisher.owner === user?._id || user.role === 'ADMIN' &&
-                        <Button onClick={openModalEdit}>Edit</Button>}
-                    {publisher.owner === user?._id || user.role === 'ADMIN' &&
-                        <Button className='myBtn' onClick={handleDeleteEventBtn}>Eliminar</Button>}
-
+                 <div className="d-grid gap-2">
+                 {(publisher.owner === user?._id || user.role === 'ADMIN') &&   
+                 <><Button onClick={openModalEdit}><Pencil/></Button><Button className='myBtn' onClick={handleDeleteEventBtn}><Trash3/></Button></>}
 
                 </div>
             </Card.Body>

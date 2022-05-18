@@ -7,6 +7,7 @@ import { useState, useEffect } from "react"
 import MessagePayment from "./MessagePayment";
 import subscriptionsService from "../../services/subscriptions.service";
 
+
 export const CheckoutForm = ({ idUser }) => {
 
     console.log('idUser', idUser)
@@ -84,7 +85,7 @@ export const CheckoutForm = ({ idUser }) => {
                         <CardElement />
                         <hr />
                         <Button variant="primary" type="submit">
-                            Pagar
+                           Pagar
                         </Button>
                     </Form>
 

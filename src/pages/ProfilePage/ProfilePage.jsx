@@ -12,6 +12,7 @@ import SwitchUser from '../../components/SwitchUser/SwitchUser'
 import subscriptionsService from '../../services/subscriptions.service'
 import publisherService from '../../services/publisher.services'
 import NewPublisherForm from '../../components/NewPublisherForm/NewPublisherForm'
+import {Pencil} from 'react-bootstrap-icons'
 
 
 const ProfilePage = () => {
@@ -98,7 +99,7 @@ const ProfilePage = () => {
                         <h1>Perfil</h1>
                     </Col>
                     <Col>
-                        {userIdentity && <Button onClick={openModal}>Editar Perfil</Button>}
+                        {userIdentity && <Button onClick={openModal}><Pencil/></Button>}
                         {user?.role === 'ADMIN' && <SwitchUser userDetails={userDetails} />}
                         {!payment && < StripeContainer idUser={id} />}
                         {!company && payment && <Button onClick={openModal2}>REGISTRAR EMPRESA</Button>}

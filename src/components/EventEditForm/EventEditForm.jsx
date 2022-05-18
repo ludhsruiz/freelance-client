@@ -16,6 +16,7 @@ const EventEditForm = ({ fireFinalActions, event }) => {
 
     const [loadingImage, setLoadingImage] = useState(false)
 
+
     const handleInputChange = e => {
         const { name, value } = e.target
 
@@ -55,43 +56,43 @@ const EventEditForm = ({ fireFinalActions, event }) => {
 
 
     return (
-        <>
-            <Form onSubmit={handleSubmit}>
 
-                <Form.Group className="mb-3" controlId="name">
-                    <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" value={eventState.title} onChange={handleInputChange} name="title" />
-                </Form.Group>
+        <Form onSubmit={handleSubmit}>
 
-                <Form.Group className="mb-3" controlId="name">
-                    <Form.Label>Price</Form.Label>
-                    <Form.Control type="text" value={eventState.price} onChange={handleInputChange} name="price" />
-                </Form.Group>
+            <Form.Group className="mb-3" controlId="name">
+                <Form.Label>Title</Form.Label>
+                <Form.Control type="text" value={eventState.title} onChange={handleInputChange} name="title" />
+            </Form.Group>
 
-                <Form.Group className="mb-3" controlId="name">
-                    <Form.Label>Date</Form.Label>
-                    <Form.Control type="date" value={eventState.date} onChange={handleInputChange} name="date" />
-                </Form.Group>
+            <Form.Group className="mb-3" controlId="imageUrl">
+                <Form.Label>Imagen</Form.Label>
+                <Form.Control type="file" onChange={handleImageUpload} />
+            </Form.Group>
 
-                <Form.Group className="mb-3" controlId="name">
-                    <Form.Label>Location</Form.Label>
-                    <Form.Control type="text" value={eventState.location} onChange={handleInputChange} name="location" />
-                </Form.Group>
+            <Form.Group className="mb-3" controlId="name">
+                <Form.Label>Price</Form.Label>
+                <Form.Control type="text" value={eventState.price} onChange={handleInputChange} name="price" />
+            </Form.Group>
 
-                <Form.Group className="mb-3" controlId="description">
-                    <Form.Label>Descripción</Form.Label>
-                    <Form.Control type="text" value={eventState.description} onChange={handleInputChange} name="description" />
-                </Form.Group>
+            <Form.Group className="mb-3" controlId="name">
+                <Form.Label>Date</Form.Label>
+                <Form.Control type="date" value={eventState.date} onChange={handleInputChange} name="date" />
+            </Form.Group>
 
-                <Form.Group className="mb-3" controlId="imageUrl">
-                    <Form.Label>Imagen (archivo)</Form.Label>
-                    <Form.Control type="file" onChange={handleImageUpload} />
-                </Form.Group>
+            <Form.Group className="mb-3" controlId="name">
+                <Form.Label>Location</Form.Label>
+                <Form.Control type="text" value={eventState.location} onChange={handleInputChange} name="location" />
+            </Form.Group>
 
-                <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Crear Evento'}</Button>
+            <Form.Group className="mb-3" controlId="description">
+                <Form.Label>Descripción</Form.Label>
+                <Form.Control as="textarea" rows={4} value={eventState.description} onChange={handleInputChange} name="description" />
+            </Form.Group>
 
-            </Form>
-        </>
+            <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'GUARDAR'}</Button>
+
+        </Form>
+
     )
 }
 

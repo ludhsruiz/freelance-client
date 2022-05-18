@@ -39,7 +39,7 @@ const OffersPage = () => {
         <>
             <Container>
                 <h1>OFERTAS DE TRABAJO </h1>
-                {isLoggedIn && user.role === 'PUBLISHER'&&
+                {isLoggedIn && (user.role === 'PUBLISHER'|| user.role=== 'ADMIN') &&
                 <Button onClick={openModal}>Crear nueva</Button>}
                 <hr />
                 <OfferList offers={offers} />
