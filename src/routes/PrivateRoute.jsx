@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { Navigate, Outlet } from "react-router-dom"
 import { AuthContext } from "../context/auth.context"
-import LoadingSpinner from "../components/Loading/Loading"
+import Loader from '../components/Loader/Loader'
 
 
 const PrivateRoute = () => {
@@ -9,7 +9,7 @@ const PrivateRoute = () => {
     const { isLoggedIn, isLoading } = useContext(AuthContext)
 
     if (isLoading) {
-        return <LoadingSpinner />
+        return <Loader />
     }
 
     if (!isLoggedIn) {

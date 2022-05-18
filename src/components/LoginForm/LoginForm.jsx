@@ -1,9 +1,8 @@
-import { useContext, useState } from "react"
+import { useContext, useState, useEffect } from "react"
 import { Form, Button } from "react-bootstrap"
 import authService from "../../services/auth.services"
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/auth.context'
-
 
 
 const Loginform = () => {
@@ -15,7 +14,12 @@ const Loginform = () => {
 
     const navigate = useNavigate()
 
-    const { storeToken, authenticateUser } = useContext(AuthContext)
+    const { user, storeToken, authenticateUser } = useContext(AuthContext)
+    
+    useEffect(() => {
+        user?._id && triggerUser()
+    }, [user])
+
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -25,10 +29,18 @@ const Loginform = () => {
             .then(({ data }) => {
                 storeToken(data.authToken)
                 authenticateUser()
-                navigate('/')
             })
             .catch(err => console.log(err))
     }
+
+
+    const triggerUser = () => {
+        if (user.role === 'ADMIN'){
+            navigate('/')
+        } else {
+        navigate(`/perfil/${user._id}`)
+    }}
+
 
     const handleInputChange = e => {
         const { value, name } = e.currentTarget

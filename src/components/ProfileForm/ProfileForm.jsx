@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import userService from "../../services/user.services.js"
-import uploadOneService from '../../services/uploadOne.service'
+// import uploadOneService from '../../services/uploadOne.service'
 
 const ProfileForm = ({ fireFinalActions, userDetails }) => {
-
 
 
     const [userData, setuserData] = useState({
@@ -17,6 +16,9 @@ const ProfileForm = ({ fireFinalActions, userDetails }) => {
         occupation: userDetails.occupation,
         bio: userDetails.bio
     })
+
+    // const [loadingImage, setLoadingImage] = useState(false)
+
 
     const handleInputChange = e => {
         const { name, value } = e.currentTarget
@@ -35,6 +37,22 @@ const ProfileForm = ({ fireFinalActions, userDetails }) => {
             })
             .catch(err => console.log(err))
     }
+
+    // const handleImageUpload = (e) => {
+
+    //     setLoadingImage(true)
+
+    //     const uploadData = new FormData()
+    //     uploadData.append('imageData', e.target.files[0])
+
+    //     uploadOneService
+    //         .uploadOneImage(uploadData)
+    //         .then(({ data }) => {
+    //             setLoadingImage(false)
+    //             setPublisherData({ ...publisherData, profileImg: data.cloudinary_url })
+    //         })
+    //         .catch(err => console.log(err))
+    // }
 
     const { name, surname, email, profileImg, role, description, bio, occupation } = userData
 
@@ -61,6 +79,11 @@ const ProfileForm = ({ fireFinalActions, userDetails }) => {
                 <Form.Label>Imagen (URL)</Form.Label>
                 <Form.Control type="text" value={profileImg} onChange={handleInputChange} name="profileImg" />
             </Form.Group>
+
+            {/* <Form.Group className="mb-3" controlId="profileImg">
+                <Form.Label>Image</Form.Label>
+                <Form.Control type="file" onChange={handleImageUpload} />
+            </Form.Group> */}
 
             <Form.Group className="mb-3" controlId="description">
                 <Form.Label>Quote</Form.Label>
@@ -94,6 +117,8 @@ const ProfileForm = ({ fireFinalActions, userDetails }) => {
             </Form.Group>
 
             <Button variant="dark" type="submit">Guardar</Button>
+            {/* <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'GUARDAR'}</Button> */}
+
         </Form>
 
 

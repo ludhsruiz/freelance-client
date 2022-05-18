@@ -79,7 +79,7 @@ const UserCard = ({ _id, name, profileImg, description, ocupation }) => {
 
                 </Card.Text>
                 {isLoggedIn && <Link to={`/perfil/${_id}`} className="btn btn-dark">Ver detalles</Link>}
-                <FollowBtn btnState={btnState} handleFollowBtn={handleFollowBtn} />                
+                {isLoggedIn && <FollowBtn btnState={btnState} handleFollowBtn={handleFollowBtn} />}             
             </Card.Body>
         </Card>
 

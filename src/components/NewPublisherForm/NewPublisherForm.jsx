@@ -87,7 +87,7 @@ const NewPublisherForm = ({ fireFinalActions, owner }) => {
 
 
             <Form.Group className="mb-3" controlId="companyLogo">
-                <Form.Label>Imagen (archivo)</Form.Label>
+                <Form.Label>company Logo</Form.Label>
                 <Form.Control type="file" onChange={handleImageUpload} />
             </Form.Group>
 

@@ -6,7 +6,7 @@ import { AuthContext } from './../../context/auth.context'
 
 const CourseCard = ({ _id, name, description, date, img, location, price }) => {
 
-    const { user } = useContext(AuthContext) 
+    const { user , isLoggedIn } = useContext(AuthContext) 
 
     return (
 
@@ -15,10 +15,8 @@ const CourseCard = ({ _id, name, description, date, img, location, price }) => {
             <Card.Body>
                 <Card.Title>{date}</Card.Title>
                 <Card.Text>{description}</Card.Text>
-                 <div className="d-grid gap-2">
-                    <Link to={`/curso/${_id}`} className="btn btn-light">Ver detalles</Link>
-                    {/* {owner?? owner === user?._id && <Button variant='warning'>Editar</Button>}
-                    {owner?? owner === user?._id && <Button variant='warning'>Delete</Button>} */}
+                 <div className="d-grid gap-2">                    
+                    {isLoggedIn && <Link to={`/curso/${_id}`} className="btn btn-light">Ver detalles</Link> }     
                 </div>
             </Card.Body>
         </Card>

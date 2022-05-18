@@ -2,7 +2,6 @@ import { Container, Modal, Button } from 'react-bootstrap'
 import PublisherList from '../../components/PublisherList/PublisherList'
 import { useEffect, useState } from "react"
 import publisherService from '../../services/publisher.services'
-// import { AuthContext } from './../../context/auth.context'
 // import { MessageContext } from './../../context/message.context'
 
 
@@ -10,8 +9,6 @@ const PublishersPage = () => {
 
  
     const [publishers, setPublishers] = useState([])
-
-
 
     useEffect(() => loadPublishers(), [])
 
@@ -23,8 +20,6 @@ const PublishersPage = () => {
     }
 
     // const { showMessage } = useContext(MessageContext)
-
-
 
     return (
         <>
