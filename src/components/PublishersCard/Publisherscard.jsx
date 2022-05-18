@@ -5,14 +5,14 @@ import { useState } from "react"
 import { AuthContext } from './../../context/auth.context'
 import PublisherEditForm from '../../components/PubisherEditForm/PublisherEditForm'
 import publisherService from '../../services/publisher.services'
-import { useNavigate } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 
 
-const PublisherCard = ({ _id, name, contacto, companyLogo, description, loadPublishers  }) => {
+const PublisherCard = ({ _id, name, contacto, companyLogo, description, loadPublishers }) => {
 
     const { user } = useContext(AuthContext)
 
-    const publisherData = { _id, name, contacto, companyLogo, description}
+    const publisherData = { _id, name, contacto, companyLogo, description }
 
     const [publisher, setPublisher] = useState([])
     const [showModalEdit, setShowModalEdit] = useState(false)
@@ -23,7 +23,7 @@ const PublisherCard = ({ _id, name, contacto, companyLogo, description, loadPubl
     const handleDeleteEventBtn = () => {
         publisherService
             .deletePublisher(_id)
-            .then(() => navigate('/empresas'))
+            .then(() => Navigate('/empresas'))
             .catch(err => console.log(err))
     }
 
@@ -40,17 +40,17 @@ const PublisherCard = ({ _id, name, contacto, companyLogo, description, loadPubl
             <Card.Body>
                 <Card.Title>{contacto}</Card.Title>
                 <Card.Text>{description}</Card.Text>
-                 <div className="d-grid gap-2">
-                 {publisher.owner === user?._id || user.role === 'ADMIN' &&   
-                 <Button onClick={openModalEdit}>Edit</Button>}
-                 {publisher.owner === user?._id || user.role === 'ADMIN' &&   
-                 <Button className='myBtn' onClick={handleDeleteEventBtn}>Eliminar</Button>}
+                <div className="d-grid gap-2">
+                    {publisher.owner === user?._id || user.role === 'ADMIN' &&
+                        <Button onClick={openModalEdit}>Edit</Button>}
+                    {publisher.owner === user?._id || user.role === 'ADMIN' &&
+                        <Button className='myBtn' onClick={handleDeleteEventBtn}>Eliminar</Button>}
 
-                    
+
                 </div>
             </Card.Body>
 
-               <Modal show={showModalEdit} onHide={closeModalEdit}>
+            <Modal show={showModalEdit} onHide={closeModalEdit}>
                 <Modal.Header closeButton>
                     <Modal.Title>Editar Empresa</Modal.Title>
                 </Modal.Header>

@@ -8,9 +8,9 @@ const NewOfferForm = ({ fireFinalActions }) => {
 
     const [offerData, setOfferData] = useState({
         title: '',
-        companyName:'', 
-        companyLogo:'', 
-        description:'',
+        companyName: '',
+        companyLogo: '',
+        description: '',
     })
 
     const [loadingImage, setLoadingImage] = useState(false)
@@ -20,7 +20,7 @@ const NewOfferForm = ({ fireFinalActions }) => {
 
         setOfferData({
             ...offerData,
-            [name]: value              
+            [name]: value
         })
     }
 
@@ -47,12 +47,12 @@ const NewOfferForm = ({ fireFinalActions }) => {
             .uploadOneImage(uploadData)
             .then(({ data }) => {
                 setLoadingImage(false)
-                setPublisherData({ ...offerData, companyLogo: data.cloudinary_url })
+                setOfferData({ ...offerData, companyLogo: data.cloudinary_url })
             })
             .catch(err => console.log(err))
     }
 
-    const { title, companyName,  description } = offerData
+    const { title, companyName, description } = offerData
 
 
 

@@ -15,7 +15,7 @@ const MessageCard = ({ customMessage }) => {
                     return (
 
                         <Card.Text key={index}>
-                            {message?.comment}
+                            {message?.comment} | {message?.createdAt.slice(0, 10)} | {message?.createdAt.slice(12, 16)}
                         </Card.Text>
                     )
                 })

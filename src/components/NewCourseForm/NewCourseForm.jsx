@@ -10,7 +10,7 @@ const NewCourseForm = ({ fireFinalActions }) => {
         name: '',
         description: '',
         date: '',
-        img: '' ,
+        img: '',
         location: '',
         price: '',
     })
@@ -22,7 +22,7 @@ const NewCourseForm = ({ fireFinalActions }) => {
 
         setCourseData({
             ...courseData,
-            [name]: value              
+            [name]: value
         })
     }
 
@@ -49,7 +49,7 @@ const NewCourseForm = ({ fireFinalActions }) => {
             .uploadOneImage(uploadData)
             .then(({ data }) => {
                 setLoadingImage(false)
-                setPublisherData({ ...courseData, img: data.cloudinary_url })
+                setCourseData({ ...courseData, img: data.cloudinary_url })
             })
             .catch(err => console.log(err))
     }

@@ -9,11 +9,11 @@ const NewEventForm = ({ fireFinalActions }) => {
         title: '',
         description: '',
         date: '',
-        img: '' ,
+        img: '',
         location: '',
         price: '',
     })
-    
+
     const [loadingImage, setLoadingImage] = useState(false)
 
     const handleInputChange = e => {
@@ -21,7 +21,7 @@ const NewEventForm = ({ fireFinalActions }) => {
 
         setEventData({
             ...eventData,
-            [name]: value              
+            [name]: value
         })
     }
 
@@ -48,7 +48,7 @@ const NewEventForm = ({ fireFinalActions }) => {
             .uploadOneImage(uploadData)
             .then(({ data }) => {
                 setLoadingImage(false)
-                setPublisherData({ ...eventData, img: data.cloudinary_url })
+                setEventData({ ...eventData, img: data.cloudinary_url })
             })
             .catch(err => console.log(err))
     }

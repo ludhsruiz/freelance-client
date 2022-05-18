@@ -1,0 +1,40 @@
+.offer-detailImg {
+
+    width: 200px;
+    margin-bottom: 40px;
+}
+
+.sidebar {
+
+    border-radius: 10px;
+    border: solid 1px;
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.sidebar button {
+    height: 50px;
+    margin: 10px 0;
+}
+
+.descp {
+    text-align: justify;
+}
+
+.button {
+    margin: 0 10px;
+}
+
+.edit-buttons {
+    padding: 0 20px;
+}
+
+.edit-buttons button {
+    margin: 10px;
+}

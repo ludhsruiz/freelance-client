@@ -1,3 +1,21 @@
-.navbar {
-    margin-bottom: 40px;
+.navbar .container {
+    margin-bottom: 0;
+    padding-top: 0;
+}
+
+.blue {
+    font-weight: 900;
+    background: -webkit-linear-gradient(90deg, #0CF, rgb(0, 153, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-link {
+    font-size: .8em;
+}
+
+
+.logoNav {
+    color: rgb(57, 57, 57);
+    font-weight: 900;
 }

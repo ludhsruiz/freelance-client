@@ -12,13 +12,14 @@ const OfferCard = ({ _id, title, companyName, companyLogo, description }) => {
         <Card className="OfferrCard">
             <Card.Header>{title}</Card.Header>
             <Card.Body>
+                <Card.Img variant="top" src={companyLogo} />
                 <Card.Title>{companyName}</Card.Title>
-                <Card.Text>{description}</Card.Text>
-                 <div className="d-grid gap-2">
-                   {isLoggedIn && <Link to={`/oferta/${_id}`} className="btn btn-light">Ver detalles</Link>}                   
+                <Card.Text>{description.slice(0, 200)}</Card.Text>
+                <div className="d-grid gap-2">
+                    {isLoggedIn && <Link to={`/oferta/${_id}`} className="btn btn-light">Ver detalles</Link>}
                 </div>
             </Card.Body>
-       </Card>
+        </Card>
 
 
     )

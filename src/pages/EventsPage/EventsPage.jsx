@@ -6,6 +6,7 @@ import eventsService from '../../services/events.services'
 import { useContext } from 'react'
 import { AuthContext } from './../../context/auth.context'
 // import { MessageContext } from './../../context/message.context'
+import './EventPage.css'
 
 const EventsPage = () => {
 
@@ -32,14 +33,14 @@ const EventsPage = () => {
         // showMessage('EventCreated')
     }
 
-    const {user, isLoggedIn } = useContext(AuthContext) 
+    const { user, isLoggedIn } = useContext(AuthContext)
 
     return (
-        <>
-            <Container>
+        <div className='events'>
+            <Container >
                 <h1> EVENTOS DISPONIBLES </h1>
-                {isLoggedIn && user.role === 'PUBLISHER'&&
-                <Button onClick={openModal}>Crear nuevo</Button>}
+                {isLoggedIn && user.role === 'PUBLISHER' &&
+                    <Button onClick={openModal}>Crear nuevo</Button>}
                 <hr />
                 <EventsList events={events} />
             </Container>
@@ -52,7 +53,7 @@ const EventsPage = () => {
                     <NewEventForm fireFinalActions={fireFinalActions} />
                 </Modal.Body>
             </Modal>
-        </>
+        </div>
     )
 }
 

@@ -4,11 +4,19 @@ const MessageContext = createContext();
 
 function MessageProviderWrapper(props) {
 
-    const [showMessage, setShowMessage] = useState(false)
-    const [messageInfo, setMessageInfo] = useState({ title: '', desc: '' })
+    const [show, setShow] = useState(true)
+    const [messageInfo, setMessageInfo] = useState({ title: '', description: '' })
+
+    const showMessage = (title, description) => {
+
+        setShow(true)
+        setMessageInfo({ title, description })
+
+    }
+
 
     return (
-        <MessageContext.Provider value={{ showMessage, setShowMessage, messageInfo, setMessageInfo }}>
+        <MessageContext.Provider value={{ show, setShow, messageInfo, showMessage }}>
             {props.children}
         </MessageContext.Provider>
     )

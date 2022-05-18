@@ -19,6 +19,7 @@ const Messages = () => {
             .then(({ data }) => {
                 setrecivedMessage(data)
                 setLoaded(true)
+                console.log('data', data)
             })
             .then(err => console.log(err))
     }

@@ -1,4 +1,4 @@
-import { Container, Modal, Button } from 'react-bootstrap'
+import { Container, Modal, Button, Row, Col } from 'react-bootstrap'
 import { useEffect, useState, useContext } from "react"
 import OfferEditForm from '../../components/OfferEditForm/OfferEditForm'
 import offersService from '../../services/offers.services'
@@ -60,7 +60,7 @@ const OffersDetail = () => {
 
     const checkIfSubs = () => {
         offersService
-            .getOneOffer(id)  
+            .getOneOffer(id)
             .then(({ data }) => {
 
                 let foundSubs = ''
@@ -76,7 +76,7 @@ const OffersDetail = () => {
                     setBtnState('Unsubscribe')
                 } else {
                     setIsSubs(false)
-                    setBtnState('subscribe')
+                    setBtnState('Subscribe')
                 }
             })
     }
@@ -89,7 +89,7 @@ const OffersDetail = () => {
                 .offerSubscribe(id)
                 .then(() => {
                     setIsSubs(true)
-                    setBtnState('unsubscribe')
+                    setBtnState('Unsubscribe')
                 })
                 .catch(err => console.log(err))
         } else if (isSubs) {
@@ -106,18 +106,25 @@ const OffersDetail = () => {
 
     return (
         <>
-            <Container>
-                <OfferDetailCard {...offer} />
-                {offer.publisher === user?._id || user.role=== 'ADMIN' &&
-                <Button onClick={openModal}>Edit</Button>}
-                {offer.publisher === user?._id || user.role=== 'ADMIN' &&
-                <Button className='myBtn' onClick={handleDeleteOfferBtn}>Eliminar</Button>}
-                
-               
+            <Container className='spacer'>
+                <Row>
+                    <OfferDetailCard {...offer} />
+                    <Col sm={2}>
+                        <div className='sidebar bg-blue'>
+                            <Row>
+                                <Col> <SubsBtn btnState={btnState} handleSubsBtn={handleSubsBtn} /></Col>
+                                <Col> <p>Suscríbete a estea oferta onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></Col>
+                            </Row> </div>
+                        <hr />
+                        <Row className='edit-buttons'>
+                            {(offer.publisher === user?._id || user.role === 'ADMIN') &&
+                                <Button onClick={openModal}>Edit</Button>}
+                            {(offer.publisher === user?._id || user.role === 'ADMIN') &&
+                                <Button className='myBtn' onClick={handleDeleteOfferBtn}>Eliminar</Button>}
+                        </Row>
+                    </Col>
+                </Row>
 
-                <SubsBtn btnState={btnState} handleSubsBtn={handleSubsBtn} />                
-
-                <hr />
             </Container>
 
             <Modal show={showModal} onHide={closeModal}>

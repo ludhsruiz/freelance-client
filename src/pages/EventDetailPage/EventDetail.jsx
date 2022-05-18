@@ -1,4 +1,4 @@
-import { Container, Modal, Button } from 'react-bootstrap'
+import { Container, Modal, Button, Row, Col } from 'react-bootstrap'
 import { useEffect, useState, useContext } from "react"
 import EventEditForm from '../../components/EventEditForm/EventEditForm'
 import eventsService from '../../services/events.services'
@@ -7,6 +7,7 @@ import EventDetailCard from '../../components/EventDetailCard/EventDetailCard'
 import { useNavigate, useParams } from 'react-router-dom'
 import StripeContainerEvent from '../../components/StripeEvent/StripeContainer'
 // import { MessageContext } from './../../context/message.context'
+import './EventDetail'
 
 
 const EventDetail = () => {
@@ -53,16 +54,19 @@ const EventDetail = () => {
 
     return (
         <>
-            <Container>
+            <Container className='events'>
                 <EventDetailCard {...event} />
-                {event.owner === user?._id || user.role=== 'ADMIN' &&
-                <Button onClick={openModal}>Edit</Button> }
-                {event.owner === user?._id || user.role=== 'ADMIN' &&
-                <Button className='myBtn' onClick={handleDeleteEventBtn}>Eliminar</Button>}
-                <hr />
+                <Row>
+                    <Col md={8}></Col>
+                    <Col className='edit-buttons'>{(event.owner === user?._id || user.role === 'ADMIN') &&
+                        <Button onClick={openModal}>Edit</Button>}
+                        {(event.owner === user?._id || user.role === 'ADMIN') &&
+                            <Button className='myBtn' onClick={handleDeleteEventBtn}>Eliminar</Button>}
+                    </Col>
+                </Row>
             </Container>
 
-            <StripeContainerEvent eventId={id}/>
+            <StripeContainerEvent eventId={id} />
 
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>

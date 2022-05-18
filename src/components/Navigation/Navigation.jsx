@@ -12,21 +12,23 @@ const Navigation = () => {
 
 
 
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar bg="light" variant="light" expand="lg">
             <Container className='navbar'>
-                <Navbar.Brand href="/">FREELANCER</Navbar.Brand>
+                <Navbar.Brand href="/"><h1 className='logoNav'>LANCE<span className='blue'>LOT</span></h1></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <NavLink to="#" className="nav-link">_</NavLink>
-                        <NavLink to="/ofertas" className="nav-link">OFFERTAS</NavLink>
+
+                        <NavLink to="/ofertas" className="nav-link">OFERTAS</NavLink>
                         <NavLink to="/eventos" className="nav-link">EVENTOS</NavLink>
                         <NavLink to="/empresas" className="nav-link">EMPRESAS</NavLink>
                         <NavLink to="/cursos" className="nav-link">CURSOS</NavLink>
                         <NavLink to="/usuarios" className="nav-link">USUARIOS</NavLink>
+                        <Nav>
+                            {user?.role === 'ADMIN' && <NavLink to="/admin" className="nav-link justify-content-end">ADMIN</NavLink>}
+                        </Nav>
                     </Nav>
                     <Nav>
-
                         {
                             isLoggedIn
                                 ?
@@ -39,9 +41,10 @@ const Navigation = () => {
                         }
 
                         {
-                            user && <NavLink to="/perfil" className="nav-link justify-content-end">Hola, {user.name}</NavLink>
+                            user && <NavLink to={`/perfil/${user._id}`} className="nav-link justify-content-end">Hola, {user.name}</NavLink>
                         }
                     </Nav>
+
                 </Navbar.Collapse>
             </Container>
         </Navbar>

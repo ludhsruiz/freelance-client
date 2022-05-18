@@ -1,15 +1,94 @@
-import { Container} from 'react-bootstrap'
+import './HomePage.css'
+import { Container, Row, Col } from 'react-bootstrap'
+import { useEffect, useState } from "react"
+import offersService from '../../services/offers.services'
+import OfferList from '../../components/OfferList/OfferList'
+import eventsService from '../../services/events.services'
+import EventsList from '../../components/EventList/EventList'
+import userService from '../../services/user.services'
+import UsersListImg from '../../components/UsersListImg/UsersListImg'
+
+
 
 const IndexPage = () => {
 
+    const [offers, setOffers] = useState([])
+    const [events, setEvents] = useState([])
+    const [users, setUsers] = useState([])
+
+    useEffect(() => loadUsers(), [])
+
+    const loadUsers = () => {
+        userService
+            .getUsers()
+            .then(({ data }) => {
+                setUsers(data)
+            })
+            .then(err => console.log(err))
+    }
+
+
+    useEffect(() => loadOffers(), [])
+
+    const loadOffers = () => {
+        offersService
+            .getAllOffers()
+            .then(({ data }) => setOffers(data.slice(0, 3)))
+            .then(err => console.log(err))
+    }
+
+    useEffect(() => loadEvents(), [])
+
+    const loadEvents = () => {
+        eventsService
+            .getAllEvents()
+            .then(({ data }) => setEvents(data.slice(0, 3)))
+            .then(err => console.log(err))
+    }
+
     return (
-        <Container>
-            <h1>Container info</h1>
-            <hr />
-            <h1>Container events</h1>
-            <hr />
-            <h1>Container offers</h1>
-            <hr />            
+        <Container className='spacer'>
+            <Row className='mb-3'>
+
+                <Col md-6>
+                    <h1 className='blue-color'>Conectando personas</h1>
+
+                    <h3 className='grey-color'>conecta empresas con profesionales independientes y agencias de todo el mundo. Donde empresas y autónomos trabajan juntos de nuevas formas que...</h3>
+                    <br></br>
+                </Col>
+                <Col></Col>
+            </Row>
+            <Row >
+
+                <hr />
+                <br></br>
+                <h3>ÚLTIMAS OFERTAS</h3>
+                <Col className='mt-3'>
+                    <OfferList offers={offers} />
+                </Col>
+            </Row>
+            <Row className='mt-3'>
+
+                <hr />
+                <br></br>
+                <h3>ÚLTIMAS EVENTOS</h3>
+                <Col className='mt-3'>
+                    <EventsList events={events} />
+                </Col>
+            </Row>
+            <Row className='mt-3'>
+
+                <hr />
+                <br></br>
+                <h3>USUARIOS</h3>
+                <Col className='mt-3'>
+                    <p>Contamos con más de {users.length} Freelance</p>
+                    <UsersListImg users={users} />
+
+                </Col>
+            </Row>
+
+
         </Container>
     )
 }

@@ -3,9 +3,14 @@ import { Form, Button } from "react-bootstrap"
 import authService from "../../services/auth.services"
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/auth.context'
+import { MessageContext } from '../../context/userMessage.context'
 
 
 const Loginform = () => {
+
+
+    const { showMessage } = useContext(MessageContext)
+
 
     const [loginData, setLoginData] = useState({
         password: '',
@@ -21,9 +26,6 @@ const Loginform = () => {
     }, [user])
 
 
-    useEffect(() => {
-        user?._id && triggerUser()
-    }, [user])
     const handleSubmit = e => {
         e.preventDefault()
         authService
@@ -31,6 +33,8 @@ const Loginform = () => {
             .then(({ data }) => {
                 storeToken(data.authToken)
                 authenticateUser()
+                showMessage('Bienvenido', 'Sesión iniciada correctamente')
+
             })
             .catch(err => console.log(err))
     }
