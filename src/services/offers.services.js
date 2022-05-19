@@ -17,6 +17,7 @@ class OffersService {
         })
     }
 
+
     getAllOffers = () => {
         return this.api.get('/')
     }
@@ -37,7 +38,7 @@ class OffersService {
     deleteOffer = id => {
         return this.api.delete(`/${id}/delete`)
     }
-    
+
     offerSubscribe = id => {
         return this.api.put(`/${id}/subscribe`)
     }

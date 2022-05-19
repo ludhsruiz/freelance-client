@@ -43,9 +43,16 @@ class UserService {
 
     }
 
-
     unfollowUser = user_id => {
         return this.api.put(`/${user_id}/unfollow`)
+    }
+
+    getFollowers = user_id => {
+        return this.api.get(`/${user_id}/followers`)
+    }
+
+    getFollowing = user_id => {
+        return this.api.get(`/${user_id}/following`)
     }
 }
 

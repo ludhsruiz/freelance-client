@@ -13,8 +13,10 @@ import subscriptionsService from '../../services/subscriptions.service'
 import publisherService from '../../services/publisher.services'
 import NewPublisherForm from '../../components/NewPublisherForm/NewPublisherForm'
 import { Pencil } from 'react-bootstrap-icons'
-import EventsService from '../../services/events.services'
-
+import eventsService from '../../services/events.services'
+import coursesService from '../../services/courses.services'
+import Followers from '../../components/Followers/Followers'
+import Following from '../../components/Following/Following'
 
 const ProfilePage = () => {
 
@@ -94,25 +96,41 @@ const ProfilePage = () => {
 
 
     /////////////////////////////
-    EventsService
-        .getAllAttendants2(id)
-        .then(({ data }) => {
 
-            console.log('EVENTOS ASISTENCIA= ', data)
-        })
-        .then(err => console.log(err))
+    const [selfEvents, setselfEvents] = useState([])
 
-    // useEffect(() => loadEvents(), [])
+    useEffect(() => loadEvents(), [])
 
-    // const loadEvents = () => {
-    //     EventsService
-    //         .getAllAttendants()
-    //         .then(({ data }) => {
+    const loadEvents = () => {
+        eventsService
+            .getAllAttendants2(id)
+            .then(({ data }) => {
 
-    //             console.log('EVENTOS ASISTENCIA= ', data)
-    //         })
-    //         .then(err => console.log(err))
-    // }
+                setselfEvents(data)
+
+            })
+
+            .then(err => console.log(err))
+    }
+
+    /////////////////////////////
+
+    const [selfCourses, setselfCourses] = useState([])
+
+    useEffect(() => loadCourses(), [])
+
+    const loadCourses = () => {
+        coursesService
+            .getAllAttendants(id)
+            .then(({ data }) => {
+
+                setselfCourses(data)
+            })
+            .then(err => console.log(err))
+    }
+    ////////////////////////////////////////////
+
+
 
 
     return (
@@ -154,16 +172,30 @@ const ProfilePage = () => {
 
                 <hr />
                 <h4>Seguidores</h4>
-                <p>{userDetails.follower}</p>
+                <Following id={id} />
+
+
                 <hr />
                 <h4>Sigues</h4>
-                <p>{userDetails.following}</p>
+                <Followers id={id} />
                 <hr />
                 <h4>Eventos</h4>
-                <p>{userDetails.follower}</p>
+
+                {
+                    selfEvents.map((elm, index) => {
+
+                        return (<div key={elm._id}><p >{elm.title} | {elm.date.slice(0, 10)} | {elm.date.slice(11, 16)} </p></div>)
+
+                    })
+
+
+                }
                 <hr />
                 <h4>Cursos</h4>
-                <p>{userDetails.following}</p>
+                {selfCourses.map((elm, index) => {
+                    return (<div key={elm._id}><p>{elm.name} | {elm.date.slice(0, 10)} | {elm.date.slice(11, 16)} </p></div>)
+
+                })}
                 <hr />
 
             </Container>
