@@ -18,6 +18,7 @@ class CoursesService {
     }
 
 
+
     getAllCourses = () => {
         return this.api.get('/')
     }
