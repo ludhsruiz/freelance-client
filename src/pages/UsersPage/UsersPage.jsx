@@ -22,7 +22,7 @@ const UsersPage = () => {
 
     return (
         <>
-            <Container>
+            <Container className='mt-5'>
                 <h1>Todos los Usuarios</h1>
                 <hr />
                 <UsersList users={users} />

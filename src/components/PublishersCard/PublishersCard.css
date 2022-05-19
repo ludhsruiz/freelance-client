@@ -1,0 +1,18 @@
+.companyLogo {
+
+    width: 100px;
+    border: 2px solid gray;
+    border-radius: 50%;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    box-shadow: 5px 5px 5px rgb(209, 208, 208);
+
+
+}
+
+.PublisherCard .card-header {
+
+    text-align: right;
+    font-weight: 900;
+    text-transform: uppercase
+}

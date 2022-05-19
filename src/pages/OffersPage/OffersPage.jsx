@@ -33,14 +33,14 @@ const OffersPage = () => {
     }
 
 
-    const {user, isLoggedIn } = useContext(AuthContext) 
+    const { user, isLoggedIn } = useContext(AuthContext)
 
     return (
         <>
-            <Container>
+            <Container className='mt-5'>
                 <h1>OFERTAS DE TRABAJO </h1>
-                {isLoggedIn && (user.role === 'PUBLISHER'|| user.role=== 'ADMIN') &&
-                <Button onClick={openModal}>Crear nueva</Button>}
+                {isLoggedIn && (user.role === 'PUBLISHER' || user.role === 'ADMIN') &&
+                    <Button onClick={openModal}>Crear nueva</Button>}
                 <hr />
                 <OfferList offers={offers} />
             </Container>

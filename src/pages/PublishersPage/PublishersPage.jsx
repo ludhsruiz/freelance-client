@@ -7,7 +7,7 @@ import publisherService from '../../services/publisher.services'
 
 const PublishersPage = () => {
 
- 
+
     const [publishers, setPublishers] = useState([])
 
     useEffect(() => loadPublishers(), [])
@@ -23,7 +23,7 @@ const PublishersPage = () => {
 
     return (
         <>
-            <Container>
+            <Container className='mt-5'>
                 <h1> EMPRESAS CON LAS QUE TRABAJAMOS </h1>
                 <hr />
                 <PublisherList publishers={publishers} loadPublishers={loadPublishers} />

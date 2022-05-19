@@ -32,14 +32,14 @@ const CoursesPage = () => {
         // showMessage('CourseCreated')
     }
 
-    const {isLoggedIn } = useContext(AuthContext) 
+    const { isLoggedIn } = useContext(AuthContext)
 
     return (
         <>
-            <Container>
+            <Container className='mt-5'>
                 <h1> CURSOS DISPONIBLES </h1>
-                {isLoggedIn &&   
-                <Button onClick={openModal}>Crear nuevo</Button>}
+                {isLoggedIn &&
+                    <Button onClick={openModal}>Crear nuevo</Button>}
                 <hr />
                 <CoursesList courses={courses} />
             </Container>
