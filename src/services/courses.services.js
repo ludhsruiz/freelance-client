@@ -17,17 +17,9 @@ class CoursesService {
         })
     }
 
-    getAllAttendants = id => {
-        console.log('LLego a servicios cursos')
-        return this.api.get(`/own/${id}`)
-    }
-
+  
     getAllCourses = () => {
         return this.api.get('/')
-    }
-
-    getOwnAttendants = () => {
-        return this.api.get('/own')
     }
 
     getAllAttendants = id => {
