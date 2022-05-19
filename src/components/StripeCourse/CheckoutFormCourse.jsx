@@ -8,12 +8,12 @@ import MessagePayment from "./MessagePayment";
 import coursesService from "../../services/courses.services";
 
 
-export const CheckoutFormCourse = ({courseId}) => {
+export const CheckoutFormCourse = ({courseId, price, name, payment, setPayment}) => {
     
     const stripe = useStripe();
     const elements = useElements();
 
-    const amount = 2000
+    const amount = price * 100
 
     const [showModal, setShowModal] = useState(false)
     const [paymentResult, setpaymentResult] = useState('')
@@ -55,7 +55,7 @@ export const CheckoutFormCourse = ({courseId}) => {
                     .courseAttendance (courseId)
 
                     setpaymentResult(response.data)
-                    setShowModal(true)
+                    setPayment(true)
 
                 }
             } catch (error) {

@@ -21,6 +21,14 @@ class CoursesService {
         return this.api.get('/')
     }
 
+    getOwnAttendants = () => {
+        return this.api.get('/own')
+    }
+
+    getAllAttendants = id => {
+        return this.api.get(`/own/${id}`)
+    }
+
     getOneCourse = id => {
         return this.api.get(`/${id}`)
     }

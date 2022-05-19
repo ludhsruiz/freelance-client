@@ -14,7 +14,7 @@ import publisherService from '../../services/publisher.services'
 import NewPublisherForm from '../../components/NewPublisherForm/NewPublisherForm'
 import { Pencil } from 'react-bootstrap-icons'
 import EventsService from '../../services/events.services'
-
+import coursesService  from '../../services/courses.services'
 
 const ProfilePage = () => {
 
@@ -97,23 +97,32 @@ const ProfilePage = () => {
     EventsService
         .getAllAttendants2(id)
         .then(({ data }) => {
-
-            console.log('EVENTOS ASISTENCIA= ', data)
-        })
+       })
         .then(err => console.log(err))
 
-    // useEffect(() => loadEvents(), [])
+    
+    /////////////////////////////
+    coursesService
+        .getAllAttendants(id)
+        .then(({ data }) => {
+        })
+        .catch(err => console.log(err))
+    
+     /////////////////////////////
+    userService
+        .getFollowers(id)
+        .then(({ data }) => {
+        })
+        .catch(err => console.log(err))
 
-    // const loadEvents = () => {
-    //     EventsService
-    //         .getAllAttendants()
-    //         .then(({ data }) => {
-
-    //             console.log('EVENTOS ASISTENCIA= ', data)
-    //         })
-    //         .then(err => console.log(err))
-    // }
-
+    /////////////////////////////
+    userService
+      .getFollowing(id)
+      .then(({ data }) => {
+      })
+      .catch(err => console.log(err))
+  
+  
 
     return (
         <>
