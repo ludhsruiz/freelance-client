@@ -8,13 +8,13 @@ import MessagePayment from "./MessagePayment";
 import eventsService from "../../services/events.services";
 
 
-export const CheckoutFormEvent = ({eventId}) => {
-    
+export const CheckoutFormEvent = ({ eventId, price, title, payment, setPayment }) => {
+
 
     const stripe = useStripe();
     const elements = useElements();
 
-    const amount = 3000
+    const amount = price * 100
 
     const [showModal, setShowModal] = useState(false)
     const [paymentResult, setpaymentResult] = useState('')
@@ -55,9 +55,10 @@ export const CheckoutFormEvent = ({eventId}) => {
 
                     eventsService
                         .eventAttendance(eventId)
-                    
+
                     setpaymentResult(response.data)
-                    setShowModal(true)
+                    setPayment(true)
+
 
                 }
             } catch (error) {
@@ -73,9 +74,7 @@ export const CheckoutFormEvent = ({eventId}) => {
         <Container>
             <Row className='stripe'>
                 <Col>
-
-                    <img src="https://raw.githubusercontent.com/wiki/facebook/react/react-logo-1000-transparent.png" />
-                    <h3>Curso de React</h3>
+                    <h3>{title}</h3>
 
                     <Form onSubmit={handleSubmit} >
 
@@ -95,7 +94,7 @@ export const CheckoutFormEvent = ({eventId}) => {
                     <Modal.Title>Estado del Pago</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <MessagePayment fireFinalActions={fireFinalActions} paymentResult={paymentResult} />
+                    <MessagePayment fireFinalActions={fireFinalActions} paymentResult={paymentResult} payment={payment} setPayment={setPayment} />
                 </Modal.Body>
             </Modal>
 

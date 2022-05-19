@@ -12,7 +12,8 @@ import SwitchUser from '../../components/SwitchUser/SwitchUser'
 import subscriptionsService from '../../services/subscriptions.service'
 import publisherService from '../../services/publisher.services'
 import NewPublisherForm from '../../components/NewPublisherForm/NewPublisherForm'
-import {Pencil} from 'react-bootstrap-icons'
+import { Pencil } from 'react-bootstrap-icons'
+import EventsService from '../../services/events.services'
 
 
 const ProfilePage = () => {
@@ -91,6 +92,29 @@ const ProfilePage = () => {
         })
         .catch(err => console.log(err))
 
+
+    /////////////////////////////
+    EventsService
+        .getAllAttendants2(id)
+        .then(({ data }) => {
+
+            console.log('EVENTOS ASISTENCIA= ', data)
+        })
+        .then(err => console.log(err))
+
+    // useEffect(() => loadEvents(), [])
+
+    // const loadEvents = () => {
+    //     EventsService
+    //         .getAllAttendants()
+    //         .then(({ data }) => {
+
+    //             console.log('EVENTOS ASISTENCIA= ', data)
+    //         })
+    //         .then(err => console.log(err))
+    // }
+
+
     return (
         <>
             <Container>
@@ -99,7 +123,7 @@ const ProfilePage = () => {
                         <h1>Perfil</h1>
                     </Col>
                     <Col>
-                        {userIdentity && <Button onClick={openModal}><Pencil/></Button>}
+                        {userIdentity && <Button onClick={openModal}><Pencil /></Button>}
                         {user?.role === 'ADMIN' && <SwitchUser userDetails={userDetails} />}
                         {!payment && < StripeContainer idUser={id} />}
                         {!company && payment && <Button onClick={openModal2}>REGISTRAR EMPRESA</Button>}
@@ -168,7 +192,3 @@ const ProfilePage = () => {
 }
 
 export default ProfilePage
-
-
-
-

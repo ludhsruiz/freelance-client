@@ -21,6 +21,14 @@ class EventsService {
         return this.api.get('/')
     }
 
+    getAllAttendants = () => {
+        return this.api.get('/own')
+    }
+
+    getAllAttendants2 = id => {
+        return this.api.get(`/own/${id}`)
+    }
+
     getOneEvent = id => {
         return this.api.get(`/${id}`)
     }
@@ -36,7 +44,7 @@ class EventsService {
     deleteEvent = id => {
         return this.api.delete(`/${id}/delete`)
     }
-    
+
     eventAttendance = id => {
         return this.api.put(`${id}/attendance`)
     }

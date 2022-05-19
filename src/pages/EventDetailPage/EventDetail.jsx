@@ -31,6 +31,7 @@ const EventDetail = () => {
             .getOneEvent(id)
             .then(({ data }) => {
                 setEvent(data)
+
             })
             .then(err => console.log(err))
     }
@@ -68,7 +69,6 @@ const EventDetail = () => {
                 </Row>
             </Container>
 
-            <StripeContainerEvent eventId={id} />
 
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>
