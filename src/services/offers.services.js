@@ -50,6 +50,10 @@ class OffersService {
     verify = token => {
         return this.api.get('/verify', { headers: { Authorization: `Bearer ${token}` } })
     }
+
+    offersByUser =id => {
+        return this.api.get(`/own/${id}`)
+    }
 }
 
 const offersService = new OffersService()

@@ -13,6 +13,7 @@ const NewCourseForm = ({ fireFinalActions }) => {
         img: '',
         location: '',
         price: '',
+        
     })
 
     const [loadingImage, setLoadingImage] = useState(false)

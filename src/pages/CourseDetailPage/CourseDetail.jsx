@@ -59,7 +59,6 @@ const CoursesDetail = () => {
                 <hr />
             </Container>
 
-            <StripeContainerCourse courseId={id}/>
 
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>

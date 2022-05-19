@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import userService from "../../services/user.services.js"
 
-const MessagePayment = ({ fireFinalActions, paymentResult }) => {
+const MessagePayment = () => {
 
 
 
@@ -12,7 +12,7 @@ const MessagePayment = ({ fireFinalActions, paymentResult }) => {
 
     return (
 
-        <h3>{paymentResult.message}</h3>
+        <h4>El pago se ha hecho correctamente</h4>
 
 
     )

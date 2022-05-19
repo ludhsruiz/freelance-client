@@ -132,6 +132,14 @@ const ProfilePage = () => {
 
 
 
+    /////////////////////////////
+    userService
+      .getFollowing(id)
+      .then(({ data }) => {
+      })
+      .catch(err => console.log(err))
+  
+  
 
     return (
         <>
