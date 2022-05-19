@@ -29,7 +29,7 @@ const Messages = () => {
 
         recivedMessage[0]?.[0] ?
             <>
-                <h4>Mensajes recibidos</h4>
+                <h3>Mensajes recibidos</h3>
                 {
                     recivedMessage.map((message, index) => {
 

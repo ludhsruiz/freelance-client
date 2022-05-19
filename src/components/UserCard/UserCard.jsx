@@ -20,7 +20,7 @@ const UserCard = ({ _id, name, profileImg, description, ocupation }) => {
         user?._id && checkIfFollowed()
     }, [user])
 
-    
+
     const checkIfFollowed = () => {
         userService
             .getUser(user._id)
@@ -74,12 +74,11 @@ const UserCard = ({ _id, name, profileImg, description, ocupation }) => {
             <Card.Body>
                 <Card.Title>{name}</Card.Title>
                 <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card's content.
+                    <p>{description}</p>
 
                 </Card.Text>
                 {isLoggedIn && <Link to={`/perfil/${_id}`} className="btn btn-dark">Ver detalles</Link>}
-                {isLoggedIn && <FollowBtn btnState={btnState} handleFollowBtn={handleFollowBtn} />}             
+                {isLoggedIn && <FollowBtn btnState={btnState} handleFollowBtn={handleFollowBtn} />}
             </Card.Body>
         </Card>
 

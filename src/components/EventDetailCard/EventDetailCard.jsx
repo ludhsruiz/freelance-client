@@ -59,7 +59,7 @@ const EventDetailCard = ({ _id, title, description, date, img, location, price }
                     <p>{date}</p>
                     <hr></hr>
                     <p>{description}</p>
-                    {!payment && <StripeContainerEvent eventId={_id} price={price} title={title} type={'event'} payment={payment} setPayment={setPayment} />}
+                    {(!payment && price != 0) && <StripeContainerEvent eventId={_id} price={price} title={title} type={'event'} payment={payment} setPayment={setPayment} />}
                 </Col>
                 <Col md={1}></Col>
             </Row>

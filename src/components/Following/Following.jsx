@@ -26,16 +26,16 @@ const Following = ({ id }) => {
 
     return (
 
-        <div>
+        <Row className='followers'>
             {
-
-
                 followings.following?.map((elm, index) => {
 
-                    return (<Col key={elm._id}><img className='thumRound' src={elm.profileImg} /> <span>{elm.name}</span></Col>)
+                    return (<Col key={elm._id} ><img className='thumRound' src={elm.profileImg} />
+                        <span className='name'>{elm.name}</span></Col>)
                 })
+
             }
-        </div>
+        </Row>
     )
 }
 

@@ -23,29 +23,22 @@ const Followers = ({ id }) => {
                 console.log('DATA= ', data)
 
             })
-            // .getFollowing(id)
-            // .then(({ data }) => {
-
-            //     setFollowing(data)
-
-            //     console.log('Following= ', data)
-            // })
             .then(err => console.log(err))
     }
 
     return (
 
-        <div>
+        <Row className='followers'>
             {
-
-
                 followers.follower?.map((elm, index) => {
 
-                    return (<Col key={elm._id}><img className='thumRound' src={elm.profileImg} /> <span>{elm.name}</span></Col>)
+                    return (<Col key={elm._id} ><img className='thumRound' src={elm.profileImg} />
+                        <span className='name'>{elm.name}</span></Col>)
                 })
             }
-        </div>
+        </Row>
     )
 }
 
 export default Followers
+

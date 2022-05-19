@@ -7,7 +7,7 @@ import CourseDetailCard from '../../components/CourseDetailCard/CourseDetailCard
 import { useNavigate, useParams } from 'react-router-dom'
 // import { MessageContext } from './../../context/message.context'
 import StripeContainerCourse from '../../components/StripeCourse/StripeContainer'
-import {Trash3, Pencil} from 'react-bootstrap-icons'
+import { Trash3, Pencil } from 'react-bootstrap-icons'
 
 const CoursesDetail = () => {
 
@@ -27,17 +27,19 @@ const CoursesDetail = () => {
             .getOneCourse(id)
             .then(({ data }) => {
                 setCourse(data)
+
+                console.log('CURSO', data, id)
             })
             .then(err => console.log(err))
     }
 
     const { isLoggedIn } = useContext(AuthContext)
-    // const { showMessage } = useContext(MessageContext)
+
 
     const fireFinalActions = () => {
         closeModal()
         loadCourse()
-        // showMessage('CourseCreated')
+
     }
 
     const navigate = useNavigate()
@@ -54,8 +56,8 @@ const CoursesDetail = () => {
         <>
             <Container>
                 <CourseDetailCard {...course} />
-                {(course.publisher === user?._id || user.role=== 'ADMIN') &&
-                <><Button onClick={openModal}><Pencil/></Button><Button className='myBtn' onClick={handleDeleteCourseBtn}><Trash3/></Button></> } 
+                {(course.publisher === user?._id || user.role === 'ADMIN') &&
+                    <><Button onClick={openModal}><Pencil /></Button><Button className='myBtn' onClick={handleDeleteCourseBtn}><Trash3 /></Button></>}
                 <hr />
             </Container>
 

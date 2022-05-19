@@ -77,7 +77,11 @@ const ProfilePage = () => {
         .getOneSubscriber(id)
         .then(({ data }) => {
 
-            if (data.length > 0) { setPayment(true) }
+            console.log('PAYMANT', data.length)
+
+            if (data.length > 0) { setPayment(true) } else {
+                setPayment(false)
+            }
 
 
         })
@@ -88,8 +92,10 @@ const ProfilePage = () => {
     publisherService
         .getPublisherByOwner(id)
         .then(({ data }) => {
-
-            if (data.length > 0) { setCompany(true) }
+            console.log('COMPANY', data.length)
+            if (data.length > 0) { setCompany(true) } else {
+                setCompany(false)
+            }
 
         })
         .catch(err => console.log(err))
@@ -128,84 +134,90 @@ const ProfilePage = () => {
             })
             .then(err => console.log(err))
     }
-    ////////////////////////////////////////////
 
-
-
-    /////////////////////////////
     userService
-      .getFollowing(id)
-      .then(({ data }) => {
-      })
-      .catch(err => console.log(err))
-  
-  
+        .getFollowing(id)
+        .then(({ data }) => {
+        })
+        .catch(err => console.log(err))
+
+
 
     return (
         <>
-            <Container>
+            <Container className='spacer'>
                 <Row>
                     <Col>
                         <h1>Perfil</h1>
-                    </Col>
-                    <Col>
-                        {userIdentity && <Button onClick={openModal}><Pencil /></Button>}
-                        {user?.role === 'ADMIN' && <SwitchUser userDetails={userDetails} />}
-                        {!payment && < StripeContainer idUser={id} />}
-                        {!company && payment && <Button onClick={openModal2}>REGISTRAR EMPRESA</Button>}
 
-                    </Col>
+                        {userIdentity && <Button onClick={openModal}><Pencil /></Button>}
+                        {user?.role === 'ADMIN' && <SwitchUser userDetails={userDetails} />}  </Col>
+                    <Col>    {(!payment && user.role === 'PUBLISHER') && <StripeContainer idUser={id} />}</Col>
+                    <Col>  {(!company && payment) && <Button onClick={openModal2}>REGISTRAR EMPRESA</Button>}</Col>
+
+
                 </Row>
                 <hr />
+                <Row>
+                    <Col>
+                        <img className='profile-imgBg' src={userDetails.profileImg} />
+                    </Col>
+                    <Col>
+                        <h2>Nombre: {userDetails.name}</h2>
+                        {userDetails.role === 'USER' ? <p>Role Actual: {userDetails.role}</p> : <h1></h1>}
 
-                <h2>Nombre: {userDetails.name}</h2>
-                {userDetails.role === 'USER' ? <p>Role Actual: {userDetails.role}</p> : <h1></h1>}
+                        <p><span className='bold'>Email: </span>{userDetails.email}</p>
 
-                <p>Email: {userDetails.email}</p>
-                <p>Imagen: <img className='profile-img' src={userDetails.profileImg} /></p>
-                <p>Descripción: {userDetails.description}</p>
-                <p>Ocupación {userDetails.occupation}</p>
-                <hr />
+                        <p><span className='bold'>Descripción: </span> {userDetails.description}</p>
+                        <p><span className='bold'>Ocupación: </span> {userDetails.occupation}</p>
+                        <p><span className='bold'>Bio: </span> {userDetails.bio}</p>
+                    </Col>
+                    <Col>
+                        {!userIdentity && <Form onSubmit={handleSubmit}>
+                            <Form.Group className="mb-3" controlId="Textarea">
+                                <Form.Label>Deja un mensaje</Form.Label>
+                                <Form.Control as="textarea" rows={3} onChange={handleInputChange} name="textarea" />
+                            </Form.Group>
+                            <Button variant="dark" type="submit">Enviar</Button>
+                        </Form>}
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        {userIdentity && <Messages />}
+                    </Col>
+                    <hr />
+                    <Col>
+                        <h3>Sigues a:</h3>
+                        <Following id={id} />
+                    </Col>
 
-                <Form onSubmit={handleSubmit}>
-                    <Form.Group className="mb-3" controlId="Textarea">
-                        <Form.Label>Deja un mensaje</Form.Label>
-                        <Form.Control as="textarea" rows={3} onChange={handleInputChange} name="textarea" />
-                    </Form.Group>
-                    <Button variant="dark" type="submit">Escribe un mensaje</Button>
-                </Form>
+                    <hr />
+                    <Col>
 
-                <hr />
-                {userIdentity && <Messages />}
+                        <h3>Te siguen:</h3>
+                        <Followers id={id} />
+                    </Col>
+                    <hr />
+                    <h3>Eventos</h3>
 
-                <hr />
-                <h4>Seguidores</h4>
-                <Following id={id} />
+                    {
+                        selfEvents.map((elm, index) => {
 
+                            return (<div key={elm._id}><span className='bold' >{elm.title}</span>  <p>{elm.date.slice(0, 10)}  {elm.date.slice(11, 16)}</p> </div>)
 
-                <hr />
-                <h4>Sigues</h4>
-                <Followers id={id} />
-                <hr />
-                <h4>Eventos</h4>
-
-                {
-                    selfEvents.map((elm, index) => {
-
-                        return (<div key={elm._id}><p >{elm.title} | {elm.date.slice(0, 10)} | {elm.date.slice(11, 16)} </p></div>)
-
-                    })
+                        })
 
 
-                }
-                <hr />
-                <h4>Cursos</h4>
-                {selfCourses.map((elm, index) => {
-                    return (<div key={elm._id}><p>{elm.name} | {elm.date.slice(0, 10)} | {elm.date.slice(11, 16)} </p></div>)
+                    }
+                    <hr />
+                    <h3>Cursos</h3>
+                    {selfCourses.map((elm, index) => {
+                        return (<div key={elm._id}><span className='bold' >{elm.name}</span>  <p>{elm.date.slice(0, 10)}  {elm.date.slice(11, 16)} </p></div>)
 
-                })}
-                <hr />
-
+                    })}
+                    <hr />
+                </Row>
             </Container>
 
             <Modal show={showModal2} onHide={closeModal2}>
