@@ -41,10 +41,10 @@ const EventsPage = () => {
                 <h1 className='grey-color' >Un lugar para hacer networking y descubrir nuevos intereses </h1>
                 <h3 className='blue-color'><br></br>
                     Nuevos eventos todas las semanas, free meet-ups para networking, y nuevas maneras de descubrir talentos creativos.<br></br>
-                    Registrate y unite a nuestra comunidad de frelancers</h3>
+                    Registrate y unite a nuestra comunidad de freelancers</h3>
                 <br></br>
                 {isLoggedIn && (user.role === 'PUBLISHER' || user.role === 'ADMIN') &&
-                    <Button  variant='outline-dark'  onClick={openModal}>Crear nuevo</Button>}
+                    <Button variant='outline-dark' onClick={openModal}>Crear nuevo</Button>}
                 <hr />
                 <EventsList events={events} />
             </Container>
