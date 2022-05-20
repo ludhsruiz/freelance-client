@@ -53,10 +53,10 @@ const CoursesDetail = () => {
 
     return (
         <>
-            <Container>
+            <Container className='mt-5'>
                 <CourseDetailCard {...course} />
                 {(course.publisher === user?._id || user.role === 'ADMIN') &&
-                    <><Button  variant='outline-dark' onClick={openModal}><Pencil /></Button><Button  variant='outline-dark' className='myBtn' onClick={handleDeleteCourseBtn}><Trash3 /></Button></>}
+                    <><Button variant='outline-dark' onClick={openModal}><Pencil /></Button><Button variant='outline-dark' className='myBtn' onClick={handleDeleteCourseBtn}><Trash3 /></Button></>}
                 <hr />
             </Container>
 

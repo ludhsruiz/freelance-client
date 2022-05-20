@@ -5,7 +5,7 @@ import { AuthContext } from '../../context/auth.context'
 import userService from '../../services/user.services'
 import postsService from '../../services/posts.services'
 import ProfileForm from '../../components/ProfileForm/ProfileForm'
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Messages from '../../components/Messages/Messages'
 import StripeContainer from '../../components/Stripe/StripeContainer'
 import SwitchUser from '../../components/SwitchUser/SwitchUser'
@@ -17,6 +17,7 @@ import eventsService from '../../services/events.services'
 import coursesService from '../../services/courses.services'
 import Followers from '../../components/Followers/Followers'
 import Following from '../../components/Following/Following'
+import offersService from '../../services/offers.services'
 
 const ProfilePage = () => {
 
@@ -77,8 +78,6 @@ const ProfilePage = () => {
         .getOneSubscriber(id)
         .then(({ data }) => {
 
-            console.log('PAYMANT', data.length)
-
             if (data.length > 0) { setPayment(true) } else {
                 setPayment(false)
             }
@@ -92,7 +91,7 @@ const ProfilePage = () => {
     publisherService
         .getPublisherByOwner(id)
         .then(({ data }) => {
-            console.log('COMPANY', data.length)
+
             if (data.length > 0) { setCompany(true) } else {
                 setCompany(false)
             }
@@ -113,6 +112,24 @@ const ProfilePage = () => {
             .then(({ data }) => {
 
                 setselfEvents(data)
+
+            })
+
+            .then(err => console.log(err))
+    }
+
+    /////////////////////////////
+
+    const [selOffers, setselOffers] = useState([])
+
+    useEffect(() => loadOffers(), [])
+
+    const loadOffers = () => {
+        offersService
+            .getAllOfferByUser(id)
+            .then(({ data }) => {
+
+                setselOffers(data)
 
             })
 
@@ -183,23 +200,23 @@ const ProfilePage = () => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
+                    <Col md={12} className='mt-5'>
                         {userIdentity && <Messages />}
                     </Col>
                     <hr />
-                    <Col>
+                    <Col md={12}>
                         <h3>Sigues a:</h3>
                         <Following id={id} />
                     </Col>
 
-                    <hr />
-                    <Col>
+
+                    <Col md={12} className='mt-5'>
 
                         <h3>Te siguen:</h3>
                         <Followers id={id} />
                     </Col>
-                    <hr />
-                    <h3>Eventos</h3>
+
+                    <h3 className='mt-5'>Eventos</h3>
 
                     {
                         selfEvents.map((elm, index) => {
@@ -207,16 +224,19 @@ const ProfilePage = () => {
                             return (<div key={elm._id}><span className='bold' >{elm.title}</span>  <p>{elm.date.slice(0, 10)}  {elm.date.slice(11, 16)}</p> </div>)
 
                         })
-
-
                     }
                     <hr />
-                    <h3>Cursos</h3>
+                    <h3 className='mt-5'>Cursos</h3>
                     {selfCourses.map((elm, index) => {
                         return (<div key={elm._id}><span className='bold' >{elm.name}</span>  <p>{elm.date.slice(0, 10)}  {elm.date.slice(11, 16)} </p></div>)
 
                     })}
                     <hr />
+                    <h3 className='mt-5'>Ofertas de trabajo</h3>
+                    {selOffers.map((elm, index) => {
+                        return (<div key={elm._id}><span className='bold' >{elm.title}</span>  <p>{elm.companyName}</p></div>)
+
+                    })}
                 </Row>
             </Container>
 

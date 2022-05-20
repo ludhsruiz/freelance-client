@@ -26,7 +26,7 @@ const UsersPage = () => {
                 <h1 className='blue-color'>El poder de unir a las personas. </h1><h1 className='grey-color'>Simplemente conectando.</h1>
                 <hr />
                 <UsersList users={users} />
-                <hr />
+
             </Container>
         </>
     )

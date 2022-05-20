@@ -38,13 +38,13 @@ const PublisherCard = ({ _id, name, contacto, companyLogo, description, loadPubl
 
 
     return (
-        <Card className="PublisherCard">
+        <Card className="PublisherCard mb-5">
             <Card.Header >{name}</Card.Header>
             <Card.Body>
                 <Card.Title><img src={companyLogo} className='companyLogo' /> {contacto}</Card.Title>
                 <Card.Text>{description}</Card.Text>
                 <div className="d-grid gap-2">
-                    {isLoggedIn &&(publisher.owner === user?._id || user.role === 'ADMIN') &&
+                    {isLoggedIn && (publisher.owner === user?._id || user.role === 'ADMIN') &&
                         <><Button variant='outline-dark' onClick={openModalEdit}><Pencil /></Button><Button variant='outline-dark' onClick={handleDeleteEventBtn}><Trash3 /></Button></>}
 
                 </div>

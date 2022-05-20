@@ -57,14 +57,14 @@ const EventDetail = () => {
 
     return (
         <>
-            <Container className='events'>
+            <Container className='events mt-5'>
                 <EventDetailCard {...event} />
                 <Row>
                     <Col md={8}></Col>
                     <Col className='edit-buttons'>{(event.owner === user?._id || user.role === 'ADMIN') &&
-                        <Button  variant='outline-dark' onClick={openModal}><Pencil /></Button>}
+                        <Button variant='outline-dark' onClick={openModal}><Pencil /></Button>}
                         {(event.owner === user?._id || user.role === 'ADMIN') &&
-                            <Button  variant='outline-dark' className='myBtn' onClick={handleDeleteEventBtn}><Trash3 /></Button>}
+                            <Button variant='outline-dark' className='myBtn' onClick={handleDeleteEventBtn}><Trash3 /></Button>}
                     </Col>
                 </Row>
             </Container>

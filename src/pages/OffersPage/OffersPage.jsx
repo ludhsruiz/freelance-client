@@ -42,9 +42,10 @@ const OffersPage = () => {
                 <h3 className='grey-color'>Configure un perfil gratuito para mostrar sus habilidades y experiencia.
                     Usted elige el método de pago que más le convenga para que le paguen fácilmente por su trabajo.
                     Solo revisa nuestras ofertas y suscríbete a ellas.</h3>
+                <br></br>
+                {isLoggedIn && (user.role === 'PUBLISHER' || user.role === 'ADMIN') &&
+                    <Button variant='outline-dark' onClick={openModal}>Crear nueva</Button>}
 
-               {isLoggedIn && (user.role === 'PUBLISHER' || user.role === 'ADMIN') &&
-                    <Button  variant='outline-dark' onClick={openModal}>Crear nueva</Button>}
                 <hr />
                 <OfferList offers={offers} />
             </Container>

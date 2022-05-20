@@ -20,7 +20,6 @@ const Followers = ({ id }) => {
             .then(({ data }) => {
 
                 setFollowers(data)
-                console.log('DATA= ', data)
 
             })
             .then(err => console.log(err))

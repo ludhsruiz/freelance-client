@@ -4,16 +4,16 @@ import Loader from "../Loader/Loader"
 
 const PublisherList = ({ publishers, loadPublishers }) => {
 
-        console.log(publishers)
+    console.log(publishers)
     return (
         publishers.length
             ?
-            <Row>
+            <Row className="mt-5">
                 {
                     publishers.map(publisher => {
                         return (
                             <Col md={{ span: 4 }} key={publisher._id}>
-                                <PublisherCard {...publisher} loadPublishers={loadPublishers}/>
+                                <PublisherCard {...publisher} loadPublishers={loadPublishers} />
                             </Col>
                         )
                     })

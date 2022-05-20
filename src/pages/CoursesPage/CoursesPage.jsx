@@ -38,12 +38,13 @@ const CoursesPage = () => {
         <>
             <Container className='mt-5'>
                 <h1 className='grey-color'> Comparte tu talento impartiendo cursos de tu especilidad </h1>
-                <h2 className='blue-color'> Ya sea que sea uno de nuestros encantadores trabajadores freelance o una pequeña empresa, 
+                <h2 className='blue-color'> Ya sea que sea uno de nuestros encantadores trabajadores freelance o una pequeña empresa,
                     lo alentamos a compartir sus talentos en uno de nuestros cursos.
                     Simplemente registrate y comparte ya sea de manera digital o en persona
                 </h2>
+                <br></br>
                 {isLoggedIn &&
-                    <Button  variant='outline-dark'  onClick={openModal}>Crear nuevo</Button>}
+                    <Button variant='outline-dark' onClick={openModal}>Crear nuevo</Button>}
                 <hr />
                 <CoursesList courses={courses} />
             </Container>

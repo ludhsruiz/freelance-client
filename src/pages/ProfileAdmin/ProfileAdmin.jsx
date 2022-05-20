@@ -35,7 +35,7 @@ const ProfileAdmin = () => {
         coursesService
             .getAllCourses()
             .then(({ data }) => {
-                     setCoursesDetails(data)
+                setCoursesDetails(data)
             })
             .catch(err => console.log(err))
 
@@ -69,7 +69,7 @@ const ProfileAdmin = () => {
                     {
                         coursesDetails.map((course, index) => {
                             return (
-                                <p key={index}>Título: {course.name} | Fecha: {course.date} | {course.price}</p>
+                                <p key={index}><b>{course.name}</b> - {course.date.slice(0, 10)} - {course.price}€ - {course.owner?.name}  {course.owner?.surname}</p>
                             )
                         })
                     }

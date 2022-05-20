@@ -18,7 +18,7 @@ const UsersList = ({ users }) => {
                         )
                     })
                 }
-                <hr />
+
             </Row> :
             <Loader />
     )

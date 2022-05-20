@@ -14,7 +14,7 @@ const CourseCard = ({ _id, name, description, date, img, location, price }) => {
 
     return (
 
-        <Card className="CourseCard">
+        <Card className="CourseCard mt-5">
             <Card.Header>{name}</Card.Header>
             <Card.Body>
                 <Card.Img src={img} className='img-course' />

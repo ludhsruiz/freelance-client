@@ -10,7 +10,7 @@ const OfferCard = ({ _id, title, companyName, companyLogo, description }) => {
     const { user, isLoggedIn } = useContext(AuthContext)
 
     return (
-        <Card className="OfferrCard">
+        <Card className="OfferrCard mt-5">
             <Card.Header>{title}</Card.Header>
             <Card.Body>
                 <Card.Img variant="top" className="imgcard-offer" src={companyLogo} />

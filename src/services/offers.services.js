@@ -22,6 +22,10 @@ class OffersService {
         return this.api.get('/')
     }
 
+    getAllOfferByUser = id => {
+        return this.api.get(`/own/${id}`)
+    }
+
     getOneOffer = id => {
         return this.api.get(`/${id}`)
     }
@@ -51,7 +55,7 @@ class OffersService {
         return this.api.get('/verify', { headers: { Authorization: `Bearer ${token}` } })
     }
 
-    offersByUser =id => {
+    offersByUser = id => {
         return this.api.get(`/own/${id}`)
     }
 }

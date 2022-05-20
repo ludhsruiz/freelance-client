@@ -9,7 +9,7 @@ const EventCard = ({ _id, title, date, location, img, price, description }) => {
     const { user, isLoggedIn } = useContext(AuthContext)
 
     return (
-        <Card className="OfferrCard">
+        <Card className="OfferrCard mt-5">
             <Card.Header>{title}</Card.Header>
             <Card.Body>
                 <Card.Img variant="top" src={img} className='img-card' />

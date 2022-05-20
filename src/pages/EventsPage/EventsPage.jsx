@@ -42,6 +42,7 @@ const EventsPage = () => {
                 <h3 className='blue-color'><br></br>
                     Nuevos eventos todas las semanas, free meet-ups para networking, y nuevas maneras de descubrir talentos creativos.<br></br>
                     Registrate y unite a nuestra comunidad de frelancers</h3>
+                <br></br>
                 {isLoggedIn && (user.role === 'PUBLISHER' || user.role === 'ADMIN') &&
                     <Button  variant='outline-dark'  onClick={openModal}>Crear nuevo</Button>}
                 <hr />

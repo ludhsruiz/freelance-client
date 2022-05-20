@@ -69,7 +69,7 @@ const UserCard = ({ _id, name, profileImg, description, ocupation }) => {
 
     return (
 
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '18rem' }} className='mt-5'>
             <Card.Img variant="top" src={profileImg} />
             <Card.Body>
                 <Card.Title>{name}</Card.Title>

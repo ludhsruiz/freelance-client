@@ -50,14 +50,14 @@ const IndexPage = () => {
         <Container className='spacer'>
             <Row className='mb-3'>
 
-                {/* <Col md-12> */}
-                    <h1 className='blue-color'>Conectando personas</h1>
-                    <h1 className='grey-color'>Conecta empresas con profesionales independientes y agencias de todo el mundo.</h1>
-                   
-                    <br pad></br>
-                {/* </Col> */}
+
+                <h1 className='blue-color'>Conectando personas</h1>
+                <h1 className='grey-color'>Conecta empresas con profesionales independientes y agencias de todo el mundo.</h1>
+
+                <br ></br>
+
                 <Col ></Col>
-            </Row >
+            </Row>
             <Row className='mb-3'>
 
                 <hr />
