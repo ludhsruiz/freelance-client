@@ -62,9 +62,9 @@ const EventDetail = () => {
                 <Row>
                     <Col md={8}></Col>
                     <Col className='edit-buttons'>{(event.owner === user?._id || user.role === 'ADMIN') &&
-                        <Button onClick={openModal}><Pencil /></Button>}
+                        <Button  variant='outline-dark' onClick={openModal}><Pencil /></Button>}
                         {(event.owner === user?._id || user.role === 'ADMIN') &&
-                            <Button className='myBtn' onClick={handleDeleteEventBtn}><Trash3 /></Button>}
+                            <Button  variant='outline-dark' className='myBtn' onClick={handleDeleteEventBtn}><Trash3 /></Button>}
                     </Col>
                 </Row>
             </Container>

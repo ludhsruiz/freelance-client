@@ -114,14 +114,14 @@ const OffersDetail = () => {
                         <div className='sidebar bg-blue'>
                             <Row>
                                 <Col> <SubsBtn btnState={btnState} handleSubsBtn={handleSubsBtn} /></Col>
-                                <Col> <p>Suscríbete a estea oferta onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></Col>
+                                <Col> <p>Suscríbete a esta oferta </p></Col>
                             </Row> </div>
                         <hr />
                         <Row className='edit-buttons'>
                             {(offer.publisher === user?._id || user.role === 'ADMIN') &&
-                                <Button onClick={openModal}><Pencil /> </Button>}
+                                <Button  variant='outline-dark' onClick={openModal}><Pencil /> </Button>}
                             {(offer.publisher === user?._id || user.role === 'ADMIN') &&
-                                <Button className='myBtn' onClick={handleDeleteOfferBtn}><Trash3 /> </Button>}
+                                <Button  variant='outline-dark'  className='myBtn' onClick={handleDeleteOfferBtn}><Trash3 /> </Button>}
                         </Row>
                     </Col>
                 </Row>
