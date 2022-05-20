@@ -147,13 +147,13 @@ const ProfilePage = () => {
         <>
             <Container className='spacer'>
                 <Row>
-                    <Col>
+                    <Col className='buttons'>
                         <h1>Perfil</h1>
 
                         {userIdentity && <Button onClick={openModal}><Pencil /></Button>}
                         {user?.role === 'ADMIN' && <SwitchUser userDetails={userDetails} />}  </Col>
-                    <Col>    {(!payment && user.role === 'PUBLISHER') && <StripeContainer idUser={id} />}</Col>
-                    <Col>  {(!company && payment) && <Button onClick={openModal2}>REGISTRAR EMPRESA</Button>}</Col>
+                    <Col className='buttons'>    {(!payment && user.role === 'PUBLISHER') && <StripeContainer idUser={id} />}</Col>
+                    <Col className='buttons'>  {(!company && payment) && <Button onClick={openModal2}>REGISTRAR EMPRESA</Button>}</Col>
 
 
                 </Row>

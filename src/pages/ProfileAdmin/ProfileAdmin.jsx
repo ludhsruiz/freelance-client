@@ -36,7 +36,7 @@ const ProfileAdmin = () => {
 
     return (
         <>
-            <Container>
+            <Container className='spacer'>
                 <h3>Hola Admin</h3>
                 <Row>
                     <hr />
@@ -45,7 +45,7 @@ const ProfileAdmin = () => {
                     <h4>Eventos</h4>
                     {eventDetails.map((event, index) => {
                         return (
-                            <p key={index}>Título: {event.title} | Fecha: {event.date} | Precio: {event.price} | Empresa: {event.owner} </p>
+                            <p key={index}><b>{event.title}</b> - Fecha: {event.date.slice(0, 10)} - Precio: {event.price}€ - Publicado por: {event.owner?.name} {event.owner?.surname} </p>
                         )
                     })}
                     <hr />
@@ -53,7 +53,7 @@ const ProfileAdmin = () => {
                     {
                         offersDetails.map((offer, index) => {
                             return (
-                                <p key={index}>{offer.title} | {offer.companyName} | {offer.publisher.name}</p>
+                                <p key={index}><b>{offer.title}</b> - {offer.companyName} - {offer.publisher.name} {offer.publisher.surname}</p>
                             )
                         })
                     }

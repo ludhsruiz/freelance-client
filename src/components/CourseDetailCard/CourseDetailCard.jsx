@@ -1,9 +1,8 @@
-import { Container, Image, Row, Col, Modal } from "react-bootstrap"
+import { Image, Row, Col, Modal } from "react-bootstrap"
 import StripeContainerCourse from '../../components/StripeCourse/StripeContainer'
 import coursesService from '../../services/courses.services'
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from '../../context/auth.context'
-import { Navigate } from "react-router-dom"
 import MessagePayment from "../../components/StripeCourse/MessagePayment";
 
 const CourseDetailCard = ({ _id, name, description, date, img, location, price }) => {
@@ -47,32 +46,32 @@ const CourseDetailCard = ({ _id, name, description, date, img, location, price }
 
     return (
         <>
-        <h2>{name}</h2>
-        <hr></hr>
-        <Row>
-            <Col>
-                <Image className='roundedCircle thumbnail' src={img}></Image>
-            </Col>
-            <Col md={1}></Col>
-            <Col>
-                <p>{location} - {price} €</p>
-                <p>{date}</p>
-                <hr></hr>
-                <p>{description}</p>
-                {!payment && <StripeContainerCourse courseId={_id} price={price} name={name} type={'event'} payment={payment} setPayment={setPayment} />}
-            </Col>
-            <Col md={1}></Col>
-        </Row>
+            <h2>{name}</h2>
+            <hr></hr>
+            <Row>
+                <Col>
+                    <Image className='roundedCircle thumbnail' src={img}></Image>
+                </Col>
+                <Col md={1}></Col>
+                <Col>
+                    <p>{location} - <b>{price}</b> €</p>
+                    <p>{date}</p>
+                    <hr></hr>
+                    <p>{description}</p>
+                    {!payment && <StripeContainerCourse courseId={_id} price={price} name={name} type={'event'} payment={payment} setPayment={setPayment} />}
+                </Col>
+                <Col md={1}></Col>
+            </Row>
 
-        <Modal show={showModal} onHide={closeModal}>
-            <Modal.Header closeButton>
-                <Modal.Title>Estado del Pago</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <MessagePayment fireFinalActions={fireFinalActions} />
-            </Modal.Body>
-        </Modal>
-    </>
+            <Modal show={showModal} onHide={closeModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Estado del Pago</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <MessagePayment fireFinalActions={fireFinalActions} />
+                </Modal.Body>
+            </Modal>
+        </>
     )
 }
 

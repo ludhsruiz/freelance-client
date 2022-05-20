@@ -5,9 +5,8 @@ import coursesService from '../../services/courses.services'
 import { AuthContext } from '../../context/auth.context'
 import CourseDetailCard from '../../components/CourseDetailCard/CourseDetailCard'
 import { useNavigate, useParams } from 'react-router-dom'
-// import { MessageContext } from './../../context/message.context'
-import StripeContainerCourse from '../../components/StripeCourse/StripeContainer'
 import { Trash3, Pencil } from 'react-bootstrap-icons'
+import './CourseDetails.css'
 
 const CoursesDetail = () => {
 
@@ -57,7 +56,7 @@ const CoursesDetail = () => {
             <Container>
                 <CourseDetailCard {...course} />
                 {(course.publisher === user?._id || user.role === 'ADMIN') &&
-                    <><Button onClick={openModal}><Pencil /></Button><Button className='myBtn' onClick={handleDeleteCourseBtn}><Trash3 /></Button></>}
+                    <><Button className='edit-buttons' onClick={openModal}><Pencil /></Button><Button className='myBtn edit-buttons' onClick={handleDeleteCourseBtn}><Trash3 /></Button></>}
                 <hr />
             </Container>
 
