@@ -23,7 +23,7 @@ const UsersPage = () => {
     return (
         <>
             <Container className='mt-5'>
-                <h1>Todos los Usuarios</h1>
+                <h1 className='blue-color'>El poder de unir a las personas. </h1><h1 className='grey-color'>Simplemente conectando.</h1>
                 <hr />
                 <UsersList users={users} />
                 <hr />

@@ -57,7 +57,7 @@ const CoursesDetail = () => {
             <Container>
                 <CourseDetailCard {...course} />
                 {(course.publisher === user?._id || user.role === 'ADMIN') &&
-                    <><Button onClick={openModal}><Pencil /></Button><Button className='myBtn' onClick={handleDeleteCourseBtn}><Trash3 /></Button></>}
+                    <><Button  variant='outline-dark' onClick={openModal}><Pencil /></Button><Button  variant='outline-dark' className='myBtn' onClick={handleDeleteCourseBtn}><Trash3 /></Button></>}
                 <hr />
             </Container>
 

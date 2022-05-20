@@ -5,13 +5,13 @@ import { AuthContext } from '../../context/auth.context'
 import Messages from '../../components/Messages/Messages'
 import offersService from '../../services/offers.services'
 import eventsService from '../../services/events.services'
-
+import coursesService from '../../services/courses.services'
 
 const ProfileAdmin = () => {
 
     const { user, isLoggedIn } = useContext(AuthContext)
 
-    //const [userDetails, setUserDetails] = useState([])
+    const [coursesDetails, setCoursesDetails] = useState([])
     const [eventDetails, seteventDetails] = useState([])
     const [offersDetails, setoffersDetails] = useState([])
 
@@ -32,6 +32,13 @@ const ProfileAdmin = () => {
             })
             .catch(err => console.log(err))
 
+        coursesService
+            .getAllCourses()
+            .then(({ data }) => {
+                     setCoursesDetails(data)
+            })
+            .catch(err => console.log(err))
+
     }
 
     return (
@@ -49,11 +56,20 @@ const ProfileAdmin = () => {
                         )
                     })}
                     <hr />
-                    <h4>Cursos</h4>
+                    <h4>Ofertas de Empleo</h4>
                     {
                         offersDetails.map((offer, index) => {
                             return (
                                 <p key={index}>{offer.title} | {offer.companyName} | {offer.publisher.name}</p>
+                            )
+                        })
+                    }
+                    <hr />
+                    <h4>Cursos</h4>
+                    {
+                        coursesDetails.map((course, index) => {
+                            return (
+                                <p key={index}>Título: {course.name} | Fecha: {course.date} | {course.price}</p>
                             )
                         })
                     }

@@ -13,7 +13,7 @@ import './PublishersCard.css'
 
 const PublisherCard = ({ _id, name, contacto, companyLogo, description, loadPublishers }) => {
 
-    const { user } = useContext(AuthContext)
+    const { user, isLoggedIn } = useContext(AuthContext)
 
     const publisherData = { _id, name, contacto, companyLogo, description }
 
@@ -44,7 +44,7 @@ const PublisherCard = ({ _id, name, contacto, companyLogo, description, loadPubl
                 <Card.Title><img src={companyLogo} className='companyLogo' /> {contacto}</Card.Title>
                 <Card.Text>{description}</Card.Text>
                 <div className="d-grid gap-2">
-                    {(publisher.owner === user?._id || user.role === 'ADMIN') &&
+                    {isLoggedIn &&(publisher.owner === user?._id || user.role === 'ADMIN') &&
                         <><Button variant='outline-dark' onClick={openModalEdit}><Pencil /></Button><Button variant='outline-dark' onClick={handleDeleteEventBtn}><Trash3 /></Button></>}
 
                 </div>

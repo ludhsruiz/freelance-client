@@ -24,7 +24,10 @@ const PublishersPage = () => {
     return (
         <>
             <Container className='mt-5'>
-                <h1> EMPRESAS CON LAS QUE TRABAJAMOS </h1>
+                <h1 className='blue-color'> EMPRESAS CON LAS QUE TRABAJAMOS </h1>
+                <h3 className='grey-color'> Nuestros colaboradores y algunas empresas que publican eventos u ofertas de trabajo .<br></br>
+                    Si eres tanto un startup como una gran empresa estamos deseando oir hablar de ti, registrate como usuario y manda un mensaje al administrador.<br></br>
+                    Join Us.</h3>
                 <hr />
                 <PublisherList publishers={publishers} loadPublishers={loadPublishers} />
 

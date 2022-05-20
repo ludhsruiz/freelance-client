@@ -38,9 +38,12 @@ const EventsPage = () => {
     return (
         <div className='events'>
             <Container >
-                <h1> EVENTOS DISPONIBLES </h1>
+                <h1 className='grey-color' >Un lugar para hacer networking y descubrir nuevos intereses </h1>
+                <h3 className='blue-color'><br></br>
+                    Nuevos eventos todas las semanas, free meet-ups para networking, y nuevas maneras de descubrir talentos creativos.<br></br>
+                    Registrate y unite a nuestra comunidad de frelancers</h3>
                 {isLoggedIn && (user.role === 'PUBLISHER' || user.role === 'ADMIN') &&
-                    <Button onClick={openModal}>Crear nuevo</Button>}
+                    <Button  variant='outline-dark'  onClick={openModal}>Crear nuevo</Button>}
                 <hr />
                 <EventsList events={events} />
             </Container>
